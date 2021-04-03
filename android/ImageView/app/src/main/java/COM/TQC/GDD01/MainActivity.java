@@ -79,6 +79,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 listview.setAdapter(adapter2);
+            }
+        });
+
+        Button btn_delete =findViewById(R.id.btn_delete);
+        btn_delete.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ArrayList empty =new ArrayList();
+                listview.setAdapter(null);
                 Toast.makeText(context, "已經清除圖片", Toast.LENGTH_LONG).show();
             }
         });
