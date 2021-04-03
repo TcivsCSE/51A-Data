@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:theme="@style/Theme.AppCompat">
+    android:theme="@style/ThemeOverlay.AppCompat">
     <TextView
         android:id="@+id/tv"
         android:layout_width="match_parent"
