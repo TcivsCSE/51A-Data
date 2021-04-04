@@ -11,3 +11,16 @@ C:\Users\Owen\source\repos\51\51\obj\Debug\51.pdb
 C:\Users\Owen\source\repos\51\51\obj\Debug\_51.admin.resources
 C:\Users\Owen\source\repos\51\51\obj\Debug\_51.user.resources
 C:\Users\Owen\source\repos\51\51\obj\Debug\_51.saler.resources
+D:\contest-topics\C#\51\51\bin\Debug\51.exe.config
+D:\contest-topics\C#\51\51\bin\Debug\51.exe
+D:\contest-topics\C#\51\51\bin\Debug\51.pdb
+D:\contest-topics\C#\51\51\obj\Debug\51.csprojAssemblyReference.cache
+D:\contest-topics\C#\51\51\obj\Debug\_51.admin.resources
+D:\contest-topics\C#\51\51\obj\Debug\_51.login.resources
+D:\contest-topics\C#\51\51\obj\Debug\_51.Properties.Resources.resources
+D:\contest-topics\C#\51\51\obj\Debug\_51.saler.resources
+D:\contest-topics\C#\51\51\obj\Debug\_51.user.resources
+D:\contest-topics\C#\51\51\obj\Debug\51.csproj.GenerateResource.cache
+D:\contest-topics\C#\51\51\obj\Debug\51.csproj.CoreCompileInputs.cache
+D:\contest-topics\C#\51\51\obj\Debug\51.exe
+D:\contest-topics\C#\51\51\obj\Debug\51.pdb

@@ -1,5 +1,7 @@
 package com.example.mediaplayer_test
 
+import android.media.MediaParser
+import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Adapter
@@ -7,6 +9,8 @@ import android.widget.ArrayAdapter
 import android.widget.Spinner
 
 class MainActivity : AppCompatActivity() {
+
+    private  var mediaplayer :MediaPlayer?=null;
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -20,4 +24,9 @@ class MainActivity : AppCompatActivity() {
         spinner.adapter = adapter
 
     }
+
+    public override fun onPause() {
+        super.onPause()
+    }
+    public
 }
