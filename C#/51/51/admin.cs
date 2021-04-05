@@ -198,19 +198,6 @@ namespace _51
                 MessageBox.Show(ex.Message);
             }
         }
-
-        private void btn_addSaler_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                RunSQLcmd("");
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
         private void btn_searchSaler_Click(object sender, EventArgs e)
         {
             try
