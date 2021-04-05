@@ -49,6 +49,12 @@ namespace _51
             this.txbox_account = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.btn_searchSaler = new System.Windows.Forms.Button();
+            this.btn_showUsers = new System.Windows.Forms.Button();
+            this.label8 = new System.Windows.Forms.Label();
+            this.btn_deleteSaler = new System.Windows.Forms.Button();
+            this.btn_addSaler = new System.Windows.Forms.Button();
+            this.txbox_salerAccount = new System.Windows.Forms.TextBox();
             this.dgv_salers = new System.Windows.Forms.DataGridView();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btn_seartch = new System.Windows.Forms.Button();
@@ -60,6 +66,15 @@ namespace _51
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.btn_useradd = new System.Windows.Forms.Button();
+            this.label10 = new System.Windows.Forms.Label();
+            this.txbox_workpoint = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.txbox_saleAccountAdd = new System.Windows.Forms.TextBox();
+            this.btn_delUser = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_users)).BeginInit();
@@ -67,6 +82,7 @@ namespace _51
             this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_salers)).BeginInit();
             this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // btn_logout
@@ -272,8 +288,15 @@ namespace _51
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.groupBox3);
+            this.tabPage3.Controls.Add(this.btn_searchSaler);
+            this.tabPage3.Controls.Add(this.btn_showUsers);
+            this.tabPage3.Controls.Add(this.label8);
+            this.tabPage3.Controls.Add(this.btn_deleteSaler);
+            this.tabPage3.Controls.Add(this.btn_addSaler);
             this.tabPage3.Controls.Add(this.dgv_salers);
             this.tabPage3.Controls.Add(this.groupBox2);
+            this.tabPage3.Controls.Add(this.txbox_salerAccount);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
@@ -282,6 +305,62 @@ namespace _51
             this.tabPage3.Text = "operation control";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
+            // btn_searchSaler
+            // 
+            this.btn_searchSaler.Location = new System.Drawing.Point(548, 433);
+            this.btn_searchSaler.Name = "btn_searchSaler";
+            this.btn_searchSaler.Size = new System.Drawing.Size(92, 23);
+            this.btn_searchSaler.TabIndex = 11;
+            this.btn_searchSaler.Text = "search saler";
+            this.btn_searchSaler.UseVisualStyleBackColor = true;
+            this.btn_searchSaler.Click += new System.EventHandler(this.btn_searchSaler_Click);
+            // 
+            // btn_showUsers
+            // 
+            this.btn_showUsers.Location = new System.Drawing.Point(207, 434);
+            this.btn_showUsers.Name = "btn_showUsers";
+            this.btn_showUsers.Size = new System.Drawing.Size(92, 23);
+            this.btn_showUsers.TabIndex = 10;
+            this.btn_showUsers.Text = "show all users";
+            this.btn_showUsers.UseVisualStyleBackColor = true;
+            this.btn_showUsers.Click += new System.EventHandler(this.btn_showUsers_Click);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label8.Location = new System.Drawing.Point(305, 437);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(94, 16);
+            this.label8.TabIndex = 9;
+            this.label8.Text = "saler_account";
+            // 
+            // btn_deleteSaler
+            // 
+            this.btn_deleteSaler.Location = new System.Drawing.Point(812, 435);
+            this.btn_deleteSaler.Name = "btn_deleteSaler";
+            this.btn_deleteSaler.Size = new System.Drawing.Size(69, 23);
+            this.btn_deleteSaler.TabIndex = 7;
+            this.btn_deleteSaler.Text = "delete saler ";
+            this.btn_deleteSaler.UseVisualStyleBackColor = true;
+            // 
+            // btn_addSaler
+            // 
+            this.btn_addSaler.Location = new System.Drawing.Point(731, 435);
+            this.btn_addSaler.Name = "btn_addSaler";
+            this.btn_addSaler.Size = new System.Drawing.Size(75, 23);
+            this.btn_addSaler.TabIndex = 6;
+            this.btn_addSaler.Text = "add saler";
+            this.btn_addSaler.UseVisualStyleBackColor = true;
+            this.btn_addSaler.Click += new System.EventHandler(this.btn_addSaler_Click);
+            // 
+            // txbox_salerAccount
+            // 
+            this.txbox_salerAccount.Location = new System.Drawing.Point(405, 434);
+            this.txbox_salerAccount.Name = "txbox_salerAccount";
+            this.txbox_salerAccount.Size = new System.Drawing.Size(137, 22);
+            this.txbox_salerAccount.TabIndex = 5;
+            // 
             // dgv_salers
             // 
             this.dgv_salers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -289,7 +368,7 @@ namespace _51
             this.dgv_salers.Name = "dgv_salers";
             this.dgv_salers.RowTemplate.Height = 24;
             this.dgv_salers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv_salers.Size = new System.Drawing.Size(676, 450);
+            this.dgv_salers.Size = new System.Drawing.Size(437, 422);
             this.dgv_salers.TabIndex = 1;
             // 
             // groupBox2
@@ -328,7 +407,7 @@ namespace _51
             // 
             // btn_applyChange
             // 
-            this.btn_applyChange.Location = new System.Drawing.Point(0, 411);
+            this.btn_applyChange.Location = new System.Drawing.Point(0, 408);
             this.btn_applyChange.Name = "btn_applyChange";
             this.btn_applyChange.Size = new System.Drawing.Size(188, 33);
             this.btn_applyChange.TabIndex = 6;
@@ -338,14 +417,14 @@ namespace _51
             // 
             // txbox_salerIneed
             // 
-            this.txbox_salerIneed.Location = new System.Drawing.Point(4, 387);
+            this.txbox_salerIneed.Location = new System.Drawing.Point(4, 384);
             this.txbox_salerIneed.Name = "txbox_salerIneed";
             this.txbox_salerIneed.Size = new System.Drawing.Size(182, 22);
             this.txbox_salerIneed.TabIndex = 5;
             // 
             // txbox_pointName
             // 
-            this.txbox_pointName.Location = new System.Drawing.Point(4, 328);
+            this.txbox_pointName.Location = new System.Drawing.Point(4, 325);
             this.txbox_pointName.Name = "txbox_pointName";
             this.txbox_pointName.Size = new System.Drawing.Size(182, 22);
             this.txbox_pointName.TabIndex = 4;
@@ -354,7 +433,7 @@ namespace _51
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("新細明體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label7.Location = new System.Drawing.Point(4, 363);
+            this.label7.Location = new System.Drawing.Point(4, 360);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(96, 21);
             this.label7.TabIndex = 3;
@@ -364,7 +443,7 @@ namespace _51
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("新細明體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label6.Location = new System.Drawing.Point(6, 295);
+            this.label6.Location = new System.Drawing.Point(6, 292);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(98, 21);
             this.label6.TabIndex = 2;
@@ -390,6 +469,98 @@ namespace _51
             this.tabPage4.Text = "statistical report";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.button2);
+            this.groupBox3.Controls.Add(this.button1);
+            this.groupBox3.Controls.Add(this.btn_delUser);
+            this.groupBox3.Controls.Add(this.btn_useradd);
+            this.groupBox3.Controls.Add(this.label10);
+            this.groupBox3.Controls.Add(this.txbox_workpoint);
+            this.groupBox3.Controls.Add(this.label12);
+            this.groupBox3.Controls.Add(this.txbox_saleAccountAdd);
+            this.groupBox3.Location = new System.Drawing.Point(650, 6);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(231, 450);
+            this.groupBox3.TabIndex = 9;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "user control";
+            // 
+            // btn_useradd
+            // 
+            this.btn_useradd.Font = new System.Drawing.Font("新細明體", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.btn_useradd.Location = new System.Drawing.Point(21, 336);
+            this.btn_useradd.Name = "btn_useradd";
+            this.btn_useradd.Size = new System.Drawing.Size(188, 46);
+            this.btn_useradd.TabIndex = 17;
+            this.btn_useradd.Text = "add user";
+            this.btn_useradd.UseVisualStyleBackColor = true;
+            this.btn_useradd.Click += new System.EventHandler(this.btn_useradd_Click);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("新細明體", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label10.Location = new System.Drawing.Point(30, 66);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(124, 27);
+            this.label10.TabIndex = 14;
+            this.label10.Text = "work point";
+            // 
+            // txbox_workpoint
+            // 
+            this.txbox_workpoint.Location = new System.Drawing.Point(21, 96);
+            this.txbox_workpoint.Name = "txbox_workpoint";
+            this.txbox_workpoint.Size = new System.Drawing.Size(188, 22);
+            this.txbox_workpoint.TabIndex = 13;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("新細明體", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label12.Location = new System.Drawing.Point(30, 11);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(145, 27);
+            this.label12.TabIndex = 10;
+            this.label12.Text = "saler account";
+            // 
+            // txbox_saleAccountAdd
+            // 
+            this.txbox_saleAccountAdd.Location = new System.Drawing.Point(21, 41);
+            this.txbox_saleAccountAdd.Name = "txbox_saleAccountAdd";
+            this.txbox_saleAccountAdd.Size = new System.Drawing.Size(188, 22);
+            this.txbox_saleAccountAdd.TabIndex = 9;
+            // 
+            // btn_delUser
+            // 
+            this.btn_delUser.Font = new System.Drawing.Font("新細明體", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.btn_delUser.Location = new System.Drawing.Point(21, 388);
+            this.btn_delUser.Name = "btn_delUser";
+            this.btn_delUser.Size = new System.Drawing.Size(188, 46);
+            this.btn_delUser.TabIndex = 18;
+            this.btn_delUser.Text = "delete user\r\n\r\n";
+            this.btn_delUser.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("新細明體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.button1.Location = new System.Drawing.Point(21, 133);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(188, 46);
+            this.button1.TabIndex = 19;
+            this.button1.Text = "change selected saler";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.Font = new System.Drawing.Font("新細明體", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.button2.Location = new System.Drawing.Point(21, 185);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(188, 46);
+            this.button2.TabIndex = 20;
+            this.button2.Text = "apply chnge";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
             // admin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -408,9 +579,12 @@ namespace _51
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.tabPage3.ResumeLayout(false);
+            this.tabPage3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_salers)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -448,5 +622,20 @@ namespace _51
         private System.Windows.Forms.TextBox txbox_servicePoint;
         private System.Windows.Forms.Button btn_seartch;
         private System.Windows.Forms.DataGridView dgv_salers;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Button btn_deleteSaler;
+        private System.Windows.Forms.Button btn_addSaler;
+        private System.Windows.Forms.TextBox txbox_salerAccount;
+        private System.Windows.Forms.Button btn_showUsers;
+        private System.Windows.Forms.Button btn_searchSaler;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.Button btn_delUser;
+        private System.Windows.Forms.Button btn_useradd;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox txbox_workpoint;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.TextBox txbox_saleAccountAdd;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button1;
     }
 }

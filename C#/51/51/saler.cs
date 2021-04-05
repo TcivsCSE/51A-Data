@@ -19,7 +19,11 @@ namespace _51
         //                                                                            "AttachDbFilename=C:\\Program Files\\Microsoft SQL Server\\MSSQL15.IWLYF\\MSSQL\\DATA\\51 - 複製.mdf;" +
         //                                                                            "Integrated Security=True;" +
         //                                                                            "Connect Timeout=30;");
-        SqlConnection cn = new SqlConnection("Server=LAPTOP-T4HKALLM\\IWLYF;" +
+        SqlConnection cn1 = new SqlConnection("Server=LAPTOP-T4HKALLM\\IWLYF;" +
+                                                                                    "Database=51;" +
+                                                                                    "Integrated Security=true;" +
+                                                                                    "Max Pool Size=10000");
+        SqlConnection cn = new SqlConnection("Server=DESKTOP-B4U5A7I;" +
                                                                                     "Database=51;" +
                                                                                     "Integrated Security=true;" +
                                                                                     "Max Pool Size=10000");
