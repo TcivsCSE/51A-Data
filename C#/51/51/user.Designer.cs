@@ -39,15 +39,9 @@ namespace _51
             this.txbox_cardId = new System.Windows.Forms.TextBox();
             this.dgv_cardBalance = new System.Windows.Forms.DataGridView();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btn_generateQRcode = new System.Windows.Forms.Button();
-            this.pb_qrcode = new System.Windows.Forms.PictureBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_cardBalance)).BeginInit();
-            this.tabPage3.SuspendLayout();
-            this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pb_qrcode)).BeginInit();
             this.SuspendLayout();
             // 
             // btn_logout
@@ -144,8 +138,6 @@ namespace _51
             // 
             // tabPage3
             // 
-            this.tabPage3.Controls.Add(this.groupBox1);
-            this.tabPage3.Controls.Add(this.pb_qrcode);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
@@ -153,34 +145,6 @@ namespace _51
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "interactive with saler";
             this.tabPage3.UseVisualStyleBackColor = true;
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.btn_generateQRcode);
-            this.groupBox1.Location = new System.Drawing.Point(6, 6);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(251, 411);
-            this.groupBox1.TabIndex = 1;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "option";
-            // 
-            // btn_generateQRcode
-            // 
-            this.btn_generateQRcode.Location = new System.Drawing.Point(170, 382);
-            this.btn_generateQRcode.Name = "btn_generateQRcode";
-            this.btn_generateQRcode.Size = new System.Drawing.Size(75, 23);
-            this.btn_generateQRcode.TabIndex = 0;
-            this.btn_generateQRcode.Text = "generate";
-            this.btn_generateQRcode.UseVisualStyleBackColor = true;
-            this.btn_generateQRcode.Click += new System.EventHandler(this.btn_generateQRcode_Click);
-            // 
-            // pb_qrcode
-            // 
-            this.pb_qrcode.Location = new System.Drawing.Point(263, 6);
-            this.pb_qrcode.Name = "pb_qrcode";
-            this.pb_qrcode.Size = new System.Drawing.Size(411, 411);
-            this.pb_qrcode.TabIndex = 0;
-            this.pb_qrcode.TabStop = false;
             // 
             // user
             // 
@@ -197,9 +161,6 @@ namespace _51
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_cardBalance)).EndInit();
-            this.tabPage3.ResumeLayout(false);
-            this.groupBox1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pb_qrcode)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -216,8 +177,5 @@ namespace _51
         private System.Windows.Forms.Button btn_searchCard;
         private System.Windows.Forms.TextBox txbox_cardId;
         private System.Windows.Forms.TabPage tabPage3;
-        private System.Windows.Forms.PictureBox pb_qrcode;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button btn_generateQRcode;
     }
 }
