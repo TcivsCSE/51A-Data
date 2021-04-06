@@ -17,11 +17,11 @@ namespace _51
         //                                                                            "AttachDbFilename=C:\\Program Files\\Microsoft SQL Server\\MSSQL15.IWLYF\\MSSQL\\DATA\\51 - 複製.mdf;" +
         //                                                                            "Integrated Security=True;" +
         //                                                                            "Connect Timeout=30;");
-        SqlConnection cn1 = new SqlConnection("Server=LAPTOP-T4HKALLM\\IWLYF;" +
+        SqlConnection cn = new SqlConnection("Server=LAPTOP-T4HKALLM\\IWLYF;" +
                                                                                     "Database=51;" +
                                                                                     "Integrated Security=true;" +
                                                                                     "Max Pool Size=10000");
-        SqlConnection cn = new SqlConnection("Server=DESKTOP-B4U5A7I;" +
+        SqlConnection cn1 = new SqlConnection("Server=DESKTOP-B4U5A7I;" +
                                                                                     "Database=51;" +
                                                                                     "Integrated Security=true;" +
                                                                                     "Max Pool Size=10000");
@@ -48,7 +48,7 @@ namespace _51
         private void admin_Load(object sender, EventArgs e)
         {
             dgv_users.DataSource = GetData("SELECT * FROM user_data WHERE  state='1'");
-            dgv_salers.DataSource = GetData("SELECT * FROM saler");
+            dgv_salers.DataSource = GetData("SELECT * FROM saler WHERE state='1'");
         }
         private void btn_logout_Click(object sender, EventArgs e)
         {
@@ -158,9 +158,11 @@ namespace _51
             try
             {
                 DataTable tmp = GetData("SELECT * FROM service_point WHERE point_name='" + txbox_pointName.Text + "'");
+                DataTable tmp_account = GetData("SELECT * FROM user_data WHERE account='"+txbox_usingAccount.Text+"'");
                 RunSQLcmd("UPDATE service_point " +
-                                        "SET point_name='"+txbox_pointName.Text+"'," + "saler_ineed='"+txbox_salerIneed.Text+"' "+
-                                        "WHERE servicePoint_id='"+tmp.Rows[0]["servicePoint_id"]+"'");
+                                        "SET point_name='" + txbox_pointName.Text + "'," + "saler_ineed='" + txbox_salerIneed.Text + "'," + "usingAccount_id='" + tmp_account.Rows[0]["user_id"]+"' "+
+                                        "WHERE servicePoint_id='" + tmp.Rows[0]["servicePoint_id"] + "'");
+                txbox_servicePoint.Text = tmp.Rows[0]["point_name"].ToString();
                 MessageBox.Show("change successfully apply",
                                                  "Information",
                                                  MessageBoxButtons.OK,
@@ -178,11 +180,13 @@ namespace _51
             {
                 DataTable tmp = GetData("SELECT * FROM service_point WHERE point_name='" +
                                                                 txbox_servicePoint.Text + "'");
+                DataTable tmp_account = GetData("SELECT * FROM user_data WHERE user_id='" + tmp.Rows[0]["usingAccount_id"] + "'");
                 if (tmp.Rows.Count != 0)
                 {
                     txbox_pointName.Text = tmp.Rows[0]["point_name"].ToString();
                     txbox_salerIneed.Text = tmp.Rows[0]["saler_ineed"].ToString();
-                    dgv_salers.DataSource = GetData("SELECT * FROM saler WHERE workSpace_id='"+
+                    txbox_usingAccount.Text =tmp_account .Rows[0]["account"].ToString();
+                    dgv_salers.DataSource = GetData("SELECT * FROM saler WHERE workPoint_id='"+
                                                                                     tmp.Rows[0]["servicePoint_id"]+"'");
                 }
                 else
@@ -215,10 +219,8 @@ namespace _51
         {
             try
             {
-                DataTable tmp = GetData("SELECT * FROM user_data WHERE account='"+
-                                                                txbox_salerAccount.Text+"'");
-                dgv_salers.DataSource = GetData("SELECT * FROM saler WHERE workAccount_id ='"+
-                                                            tmp.Rows[0]["user_id"]+"'");
+                dgv_salers.DataSource = GetData("SELECT * FROM saler WHERE saler_name='"+
+                                                            txbox_salerName.Text+"'");
             }
             catch(Exception ex)
             {
@@ -241,15 +243,63 @@ namespace _51
         {
             try
             {
-                DataTable tmp_account = GetData("SELECT * FROM user_data WHERE account='" +
-                                                            txbox_saleAccountAdd.Text + "'");
-                DataTable tmp_workPoint = GetData("SELECT * FROM service_point WHERE point_name ='" +
-                                                            txbox_workpoint.Text+"'");
-                RunSQLcmd("INSERT into saler (workAccount_id,workSpace_id,state) VALUES('" +
-                                        tmp_account.Rows[0]["user_id"]+"','" +
-                                        tmp_workPoint.Rows[0]["servicePoint_id"]+"','1')");
+                DataTable tmp = GetData("SELECT * FROM service_point WHERE point_name ='" + txbox_workpoint.Text + "'");
+                RunSQLcmd("INSERT into saler (saler_name,workPoint_id,state) VALUES('" + txbox_saleNameAdd.Text + "','" + tmp.Rows[0]["servicePoint_id"] + "','1')");
                 MessageBox.Show("saler successfully add",
-                                                    "Informatioin",
+                                                    "information",
+                                                    MessageBoxButtons.OK,
+                                                    MessageBoxIcon.Information);
+                admin_Load(sender, e);
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btn_delUser_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                RunSQLcmd("UPDATE saler" +
+                                        " SET state='0'" +
+                                        "WHERE saler_id='"+dgv_salers.SelectedRows[0].Cells["saler_id"].Value+"'");
+                MessageBox.Show("saler successfully deleted",
+                                                    "information",
+                                                    MessageBoxButtons.OK,
+                                                    MessageBoxIcon.Information);
+                admin_Load(sender, e);
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btn_changeSelectedSaler_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DataTable tmp_workPoint = GetData("SELECT * FROM service_point WHERE servicePoint_id ='" + dgv_salers.SelectedRows[0].Cells["workPoint_id"].Value + "'");
+                txbox_saleNameAdd.Text = dgv_salers.SelectedRows[0].Cells["saler_name"].Value.ToString();
+                txbox_workpoint.Text = tmp_workPoint.Rows[0]["point_name"].ToString();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btn_applySalerChange_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DataTable tmp_workPoint = GetData("SELECT * FROM service_point WHERE point_name='" + txbox_workpoint.Text + "'");
+                RunSQLcmd("UPDATE saler " +
+                                        "SET saler_name='"+ txbox_saleNameAdd.Text + "', workPoint_id='"+tmp_workPoint.Rows[0]["servicePoint_id"]+"' "+
+                                        "WHERE saler_id = '"+dgv_salers.SelectedRows[0].Cells["saler_id"].Value+"'");
+                MessageBox.Show("change successfully apply",
+                                                    "informatioin",
                                                     MessageBoxButtons.OK,
                                                     MessageBoxIcon.Information);
                 admin_Load(sender, e);

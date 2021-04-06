@@ -24,3 +24,21 @@ D:\contest-topics\C#\51\51\obj\Debug\51.csproj.GenerateResource.cache
 D:\contest-topics\C#\51\51\obj\Debug\51.csproj.CoreCompileInputs.cache
 D:\contest-topics\C#\51\51\obj\Debug\51.exe
 D:\contest-topics\C#\51\51\obj\Debug\51.pdb
+C:\git project\contest-topics\C#\51\51\bin\Debug\51.exe.config
+C:\git project\contest-topics\C#\51\51\bin\Debug\51.exe
+C:\git project\contest-topics\C#\51\51\bin\Debug\51.pdb
+C:\git project\contest-topics\C#\51\51\obj\Debug\51.csprojAssemblyReference.cache
+C:\git project\contest-topics\C#\51\51\obj\Debug\_51.admin.resources
+C:\git project\contest-topics\C#\51\51\obj\Debug\_51.login.resources
+C:\git project\contest-topics\C#\51\51\obj\Debug\_51.Properties.Resources.resources
+C:\git project\contest-topics\C#\51\51\obj\Debug\_51.saler.resources
+C:\git project\contest-topics\C#\51\51\obj\Debug\_51.user.resources
+C:\git project\contest-topics\C#\51\51\obj\Debug\51.csproj.GenerateResource.cache
+C:\git project\contest-topics\C#\51\51\obj\Debug\51.csproj.CoreCompileInputs.cache
+C:\git project\contest-topics\C#\51\51\obj\Debug\51.exe
+C:\git project\contest-topics\C#\51\51\obj\Debug\51.pdb
+C:\git project\contest-topics\C#\51\51\bin\Debug\BarcodeService.dll
+C:\git project\contest-topics\C#\51\51\bin\Debug\zxing.dll
+C:\git project\contest-topics\C#\51\51\bin\Debug\BarcodeService.pdb
+C:\git project\contest-topics\C#\51\51\bin\Debug\zxing.pdb
+C:\git project\contest-topics\C#\51\51\obj\Debug\51.csproj.CopyComplete

@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using BarcodeService;
+using BarcodeService.Enums;
 
 namespace _51
 {
@@ -19,11 +21,11 @@ namespace _51
         //                                                                            "AttachDbFilename=C:\\Program Files\\Microsoft SQL Server\\MSSQL15.IWLYF\\MSSQL\\DATA\\51 - 複製.mdf;" +
         //                                                                            "Integrated Security=True;" +
         //                                                                            "Connect Timeout=30;");
-        SqlConnection cn1 = new SqlConnection("Server=LAPTOP-T4HKALLM\\IWLYF;" +
+        SqlConnection cn = new SqlConnection("Server=LAPTOP-T4HKALLM\\IWLYF;" +
                                                                                     "Database=51;" +
                                                                                     "Integrated Security=true;" +
                                                                                     "Max Pool Size=10000");
-        SqlConnection cn = new SqlConnection("Server=DESKTOP-B4U5A7I;" +
+        SqlConnection cn1 = new SqlConnection("Server=DESKTOP-B4U5A7I;" +
                                                                                     "Database=51;" +
                                                                                     "Integrated Security=true;" +
                                                                                     "Max Pool Size=10000");
@@ -47,13 +49,49 @@ namespace _51
         {
             InitializeComponent();
             dt_PersonalInformation = dt;
+        }       
+        private void user_Load(object sender, EventArgs e)
+        {
+            dgv_cardBalance.DataSource = GetData("SELECT * FROM card_data WHERE user_id='"+dt_PersonalInformation.Rows[0]["user_id"]+"'");
         }
+
 
         private void btn_logout_Click(object sender, EventArgs e)
         {
             login l = new login();
             l.Show();
             this.Hide();
+        }
+
+        private void btn_showAllCard_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                user_Load(sender, e);
+                txbox_cardId.Text = "";
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btn_searchCard_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                dgv_cardBalance.DataSource = GetData("SELECT * FROM card_data WHERE card_id='"+txbox_cardId.Text+"' AND user_id='"+dt_PersonalInformation.Rows[0]["user_id"]+"'");
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btn_generateQRcode_Click(object sender, EventArgs e)
+        {
+            Bitmap qrcode = BarcodeService.QRCode.Generate(DateTime.Now.ToString(), 400, 400, errorCorrectionLevel: ErrorCorrectionLevel.M);
+            pb_qrcode.Image = qrcode;
         }
     }
 }
