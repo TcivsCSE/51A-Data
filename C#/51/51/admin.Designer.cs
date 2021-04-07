@@ -48,6 +48,13 @@ namespace _51
             this.label1 = new System.Windows.Forms.Label();
             this.txbox_account = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.btn_apply = new System.Windows.Forms.Button();
+            this.label14 = new System.Windows.Forms.Label();
+            this.txbox_toKnow = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.txbox_cardDescription = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.txbox_companyDescription = new System.Windows.Forms.TextBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.btn_applySalerChange = new System.Windows.Forms.Button();
@@ -61,10 +68,10 @@ namespace _51
             this.btn_searchSaler = new System.Windows.Forms.Button();
             this.btn_showUsers = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
-            this.btn_deleteSaler = new System.Windows.Forms.Button();
-            this.btn_addSaler = new System.Windows.Forms.Button();
             this.dgv_salers = new System.Windows.Forms.DataGridView();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.txbox_usingAccount = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.btn_seartch = new System.Windows.Forms.Button();
             this.txbox_servicePoint = new System.Windows.Forms.TextBox();
             this.btn_applyChange = new System.Windows.Forms.Button();
@@ -75,12 +82,13 @@ namespace _51
             this.label5 = new System.Windows.Forms.Label();
             this.txbox_salerName = new System.Windows.Forms.TextBox();
             this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.txbox_usingAccount = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.txbox_news = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_users)).BeginInit();
             this.groupBox1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_salers)).BeginInit();
@@ -279,6 +287,15 @@ namespace _51
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.label15);
+            this.tabPage2.Controls.Add(this.txbox_news);
+            this.tabPage2.Controls.Add(this.btn_apply);
+            this.tabPage2.Controls.Add(this.label14);
+            this.tabPage2.Controls.Add(this.txbox_toKnow);
+            this.tabPage2.Controls.Add(this.label13);
+            this.tabPage2.Controls.Add(this.txbox_cardDescription);
+            this.tabPage2.Controls.Add(this.label11);
+            this.tabPage2.Controls.Add(this.txbox_companyDescription);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Margin = new System.Windows.Forms.Padding(2);
             this.tabPage2.Name = "tabPage2";
@@ -288,14 +305,73 @@ namespace _51
             this.tabPage2.Text = "information control ";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // btn_apply
+            // 
+            this.btn_apply.Location = new System.Drawing.Point(809, 435);
+            this.btn_apply.Name = "btn_apply";
+            this.btn_apply.Size = new System.Drawing.Size(75, 23);
+            this.btn_apply.TabIndex = 6;
+            this.btn_apply.Text = "apply change";
+            this.btn_apply.UseVisualStyleBackColor = true;
+            this.btn_apply.Click += new System.EventHandler(this.btn_apply_Click);
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(3, 194);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(43, 12);
+            this.label14.TabIndex = 5;
+            this.label14.Text = "to know";
+            // 
+            // txbox_toKnow
+            // 
+            this.txbox_toKnow.Location = new System.Drawing.Point(3, 209);
+            this.txbox_toKnow.Multiline = true;
+            this.txbox_toKnow.Name = "txbox_toKnow";
+            this.txbox_toKnow.Size = new System.Drawing.Size(881, 76);
+            this.txbox_toKnow.TabIndex = 4;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(3, 100);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(79, 12);
+            this.label13.TabIndex = 3;
+            this.label13.Text = "card description";
+            // 
+            // txbox_cardDescription
+            // 
+            this.txbox_cardDescription.Location = new System.Drawing.Point(3, 115);
+            this.txbox_cardDescription.Multiline = true;
+            this.txbox_cardDescription.Name = "txbox_cardDescription";
+            this.txbox_cardDescription.Size = new System.Drawing.Size(881, 76);
+            this.txbox_cardDescription.TabIndex = 2;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(6, 6);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(102, 12);
+            this.label11.TabIndex = 1;
+            this.label11.Text = "company description";
+            // 
+            // txbox_companyDescription
+            // 
+            this.txbox_companyDescription.Location = new System.Drawing.Point(3, 21);
+            this.txbox_companyDescription.Multiline = true;
+            this.txbox_companyDescription.Name = "txbox_companyDescription";
+            this.txbox_companyDescription.Size = new System.Drawing.Size(881, 76);
+            this.txbox_companyDescription.TabIndex = 0;
+            // 
             // tabPage3
             // 
             this.tabPage3.Controls.Add(this.groupBox3);
             this.tabPage3.Controls.Add(this.btn_searchSaler);
             this.tabPage3.Controls.Add(this.btn_showUsers);
             this.tabPage3.Controls.Add(this.label8);
-            this.tabPage3.Controls.Add(this.btn_deleteSaler);
-            this.tabPage3.Controls.Add(this.btn_addSaler);
             this.tabPage3.Controls.Add(this.dgv_salers);
             this.tabPage3.Controls.Add(this.groupBox2);
             this.tabPage3.Controls.Add(this.txbox_salerName);
@@ -319,7 +395,7 @@ namespace _51
             this.groupBox3.Controls.Add(this.txbox_saleNameAdd);
             this.groupBox3.Location = new System.Drawing.Point(650, 6);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(231, 450);
+            this.groupBox3.Size = new System.Drawing.Size(231, 451);
             this.groupBox3.TabIndex = 9;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "user control";
@@ -432,25 +508,6 @@ namespace _51
             this.label8.TabIndex = 9;
             this.label8.Text = "saler_name";
             // 
-            // btn_deleteSaler
-            // 
-            this.btn_deleteSaler.Location = new System.Drawing.Point(812, 435);
-            this.btn_deleteSaler.Name = "btn_deleteSaler";
-            this.btn_deleteSaler.Size = new System.Drawing.Size(69, 23);
-            this.btn_deleteSaler.TabIndex = 7;
-            this.btn_deleteSaler.Text = "delete saler ";
-            this.btn_deleteSaler.UseVisualStyleBackColor = true;
-            // 
-            // btn_addSaler
-            // 
-            this.btn_addSaler.Location = new System.Drawing.Point(731, 435);
-            this.btn_addSaler.Name = "btn_addSaler";
-            this.btn_addSaler.Size = new System.Drawing.Size(75, 23);
-            this.btn_addSaler.TabIndex = 6;
-            this.btn_addSaler.Text = "add saler";
-            this.btn_addSaler.UseVisualStyleBackColor = true;
-            this.btn_addSaler.Click += new System.EventHandler(this.btn_addSaler_Click);
-            // 
             // dgv_salers
             // 
             this.dgv_salers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -479,6 +536,23 @@ namespace _51
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "service point";
+            // 
+            // txbox_usingAccount
+            // 
+            this.txbox_usingAccount.Location = new System.Drawing.Point(4, 260);
+            this.txbox_usingAccount.Name = "txbox_usingAccount";
+            this.txbox_usingAccount.Size = new System.Drawing.Size(182, 22);
+            this.txbox_usingAccount.TabIndex = 10;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("新細明體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label9.Location = new System.Drawing.Point(6, 227);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(120, 21);
+            this.label9.TabIndex = 9;
+            this.label9.Text = "using account";
             // 
             // btn_seartch
             // 
@@ -568,22 +642,22 @@ namespace _51
             this.tabPage4.Text = "statistical report";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
-            // txbox_usingAccount
+            // label15
             // 
-            this.txbox_usingAccount.Location = new System.Drawing.Point(4, 260);
-            this.txbox_usingAccount.Name = "txbox_usingAccount";
-            this.txbox_usingAccount.Size = new System.Drawing.Size(182, 22);
-            this.txbox_usingAccount.TabIndex = 10;
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(3, 288);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(28, 12);
+            this.label15.TabIndex = 8;
+            this.label15.Text = "news";
             // 
-            // label9
+            // txbox_news
             // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("新細明體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label9.Location = new System.Drawing.Point(6, 227);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(120, 21);
-            this.label9.TabIndex = 9;
-            this.label9.Text = "using account";
+            this.txbox_news.Location = new System.Drawing.Point(3, 303);
+            this.txbox_news.Multiline = true;
+            this.txbox_news.Name = "txbox_news";
+            this.txbox_news.Size = new System.Drawing.Size(881, 76);
+            this.txbox_news.TabIndex = 7;
             // 
             // admin
             // 
@@ -602,6 +676,8 @@ namespace _51
             ((System.ComponentModel.ISupportInitialize)(this.dgv_users)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
             this.groupBox3.ResumeLayout(false);
@@ -647,8 +723,6 @@ namespace _51
         private System.Windows.Forms.Button btn_seartch;
         private System.Windows.Forms.DataGridView dgv_salers;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Button btn_deleteSaler;
-        private System.Windows.Forms.Button btn_addSaler;
         private System.Windows.Forms.TextBox txbox_salerName;
         private System.Windows.Forms.Button btn_showUsers;
         private System.Windows.Forms.Button btn_searchSaler;
@@ -663,5 +737,14 @@ namespace _51
         private System.Windows.Forms.Button btn_changeSelectedSaler;
         private System.Windows.Forms.TextBox txbox_usingAccount;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox txbox_companyDescription;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.TextBox txbox_toKnow;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.TextBox txbox_cardDescription;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Button btn_apply;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.TextBox txbox_news;
     }
 }

@@ -13,15 +13,13 @@ namespace _51
 {
     public partial class login : Form
     {
-        //SqlConnection cn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;" +
-        //                                                                            "AttachDbFilename=C:\\Program Files\\Microsoft SQL Server\\MSSQL15.IWLYF\\MSSQL\\DATA\\51 - 複製.mdf;" +
-        //                                                                            "Integrated Security=True;" +
-        //                                                                            "Connect Timeout=30;");
-        SqlConnection cn1 = new SqlConnection("Server=LAPTOP-T4HKALLM\\IWLYF;" +
+        SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
+        SqlConnection cn = new SqlConnection();
+        SqlConnection cn2 = new SqlConnection("Server=LAPTOP-T4HKALLM\\IWLYF;" +
                                                                                     "Database=51;" +
                                                                                     "Integrated Security=true;" +
                                                                                     "Max Pool Size=10000");
-        SqlConnection cn = new SqlConnection("Server=DESKTOP-B4U5A7I;" +
+        SqlConnection cn1 = new SqlConnection("Server=DESKTOP-B4U5A7I;" +
                                                                                     "Database=51;" +
                                                                                     "Integrated Security=true;" +
                                                                                     "Max Pool Size=10000");
@@ -58,17 +56,17 @@ namespace _51
                     switch (Convert.ToInt32(tmp.Rows[0]["group_id"]))
                     {
                         case 1:
-                            admin a = new admin();
+                            admin a = new admin(cn);
                             a.Show();
                             this.Hide();
                             break;
                         case 2:
-                            saler s = new saler();
+                            saler s = new saler(cn);
                             s.Show();
                             this.Hide();
                             break;
                         case 3:
-                            user u = new user(tmp);
+                            user u = new user(tmp,cn);
                             u.Show();
                             this.Hide();
                             break;
@@ -117,7 +115,16 @@ namespace _51
             {
                 MessageBox.Show(ex.Message);
             }
-        }    
+        }
+
+        private void login_Load(object sender, EventArgs e)
+        {
+            builder.DataSource = "(LocalDB)\\MSSQLLocalDB";
+            builder.AttachDBFilename = Application.StartupPath + "\\login_db.mdf";
+            builder.IntegratedSecurity = true;
+            builder.ConnectTimeout = 30;
+            cn.ConnectionString = builder.ConnectionString;
+        }
     }
 }
 

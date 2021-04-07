@@ -17,15 +17,12 @@ namespace _51
     {
 
         DataTable dt_PersonalInformation = new DataTable();
-        //SqlConnection cn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;" +
-        //                                                                            "AttachDbFilename=C:\\Program Files\\Microsoft SQL Server\\MSSQL15.IWLYF\\MSSQL\\DATA\\51 - 複製.mdf;" +
-        //                                                                            "Integrated Security=True;" +
-        //                                                                            "Connect Timeout=30;");
-        SqlConnection cn1 = new SqlConnection("Server=LAPTOP-T4HKALLM\\IWLYF;" +
+        SqlConnection cn = new SqlConnection();
+        SqlConnection cn2 = new SqlConnection("Server=LAPTOP-T4HKALLM\\IWLYF;" +
                                                                                     "Database=51;" +
                                                                                     "Integrated Security=true;" +
                                                                                     "Max Pool Size=10000");
-        SqlConnection cn = new SqlConnection("Server=DESKTOP-B4U5A7I;" +
+        SqlConnection cn1 = new SqlConnection("Server=DESKTOP-B4U5A7I;" +
                                                                                     "Database=51;" +
                                                                                     "Integrated Security=true;" +
                                                                                     "Max Pool Size=10000");
@@ -45,10 +42,11 @@ namespace _51
             cmd.ExecuteNonQuery();
             cn.Close();
         }
-        public user(DataTable dt)
+        public user(DataTable dt,SqlConnection connection)
         {
             InitializeComponent();
             dt_PersonalInformation = dt;
+            cn = connection;
         }       
         private void user_Load(object sender, EventArgs e)
         {
@@ -88,6 +86,51 @@ namespace _51
             }
         }
 
-        
+        private void btn_transfer_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DataTable tmp_mainCard = GetData("SELECT * FROM card_data WHERE card_id='"+txbox_hostCardId.Text+"'");
+                DataTable tmp_subCard = GetData("SELECT * FROM card_data WHERE card_id='" + txbox_subCardId.Text + "'");
+                if (Convert.ToInt32(tmp_mainCard.Rows[0]["balance"]) > Convert.ToInt32(txbox_Amount.Text))
+                {
+                    if (tmp_mainCard.Rows[0]["user_id"].ToString() == dt_PersonalInformation.Rows[0]["user_id"].ToString())
+                    {
+                        RunSQLcmd("UPDATE card_data " +
+                                                "SET balance='" + (Convert.ToInt32(tmp_mainCard.Rows[0]["balance"]) - Convert.ToInt32(txbox_Amount.Text)).ToString() + "'" +
+                                                "WHERE card_id='" + txbox_hostCardId.Text + "'");
+                        RunSQLcmd("UPDATE card_data " +
+                                                "SET balance='" + (Convert.ToInt32(tmp_subCard.Rows[0]["balance"]) + Convert.ToInt32(txbox_Amount.Text)).ToString() + "'" +
+                                                "WHERE card_id='" + txbox_subCardId.Text + "'");
+                        MessageBox.Show("transfer successful",
+                                                            "information",
+                                                            MessageBoxButtons.OK,
+                                                            MessageBoxIcon.Information);
+                        txbox_hostCardId.Text = "";
+                        txbox_subCardId.Text = "";
+                        txbox_Amount.Text = "";
+                    }
+                    else
+                    {
+                        MessageBox.Show("the card is not yours",
+                                                            "information",
+                                                            MessageBoxButtons.OK,
+                                                            MessageBoxIcon.Information);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Insufficient balance",
+                                                        "information",
+                                                        MessageBoxButtons.OK,
+                                                        MessageBoxIcon.Information);
+                }
+
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
     }
 }

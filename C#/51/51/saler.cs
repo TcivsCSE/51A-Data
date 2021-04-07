@@ -15,15 +15,12 @@ namespace _51
     {
         DataTable dt_personalInfo = new DataTable();
         DataTable dt_card_information = new DataTable();
-        //SqlConnection cn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;" +
-        //                                                                            "AttachDbFilename=C:\\Program Files\\Microsoft SQL Server\\MSSQL15.IWLYF\\MSSQL\\DATA\\51 - 複製.mdf;" +
-        //                                                                            "Integrated Security=True;" +
-        //                                                                            "Connect Timeout=30;");
-        SqlConnection cn1 = new SqlConnection("Server=LAPTOP-T4HKALLM\\IWLYF;" +
+        SqlConnection cn = new SqlConnection();
+        SqlConnection cn2 = new SqlConnection("Server=LAPTOP-T4HKALLM\\IWLYF;" +
                                                                                     "Database=51;" +
                                                                                     "Integrated Security=true;" +
                                                                                     "Max Pool Size=10000");
-        SqlConnection cn = new SqlConnection("Server=DESKTOP-B4U5A7I;" +
+        SqlConnection cn1 = new SqlConnection("Server=DESKTOP-B4U5A7I;" +
                                                                                     "Database=51;" +
                                                                                     "Integrated Security=true;" +
                                                                                     "Max Pool Size=10000");
@@ -42,10 +39,12 @@ namespace _51
             cmd.ExecuteNonQuery();
             cn.Close();
         }
-        public saler()
+        public saler(SqlConnection connection)
         {
             InitializeComponent();
             dgv_cardId.DataSource = GetData("SELECT * FROM card_type");
+
+            cn = connection;
         }
         private void saler_Load(object sender, EventArgs e)
         {

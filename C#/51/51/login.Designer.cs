@@ -41,28 +41,25 @@ namespace _51
             // txbox_account
             // 
             this.txbox_account.Font = new System.Drawing.Font("新細明體", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.txbox_account.Location = new System.Drawing.Point(56, 163);
-            this.txbox_account.Margin = new System.Windows.Forms.Padding(4);
+            this.txbox_account.Location = new System.Drawing.Point(37, 109);
             this.txbox_account.Name = "txbox_account";
-            this.txbox_account.Size = new System.Drawing.Size(534, 94);
+            this.txbox_account.Size = new System.Drawing.Size(357, 65);
             this.txbox_account.TabIndex = 0;
             // 
             // txbox_password
             // 
             this.txbox_password.Font = new System.Drawing.Font("新細明體", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.txbox_password.Location = new System.Drawing.Point(56, 333);
-            this.txbox_password.Margin = new System.Windows.Forms.Padding(4);
+            this.txbox_password.Location = new System.Drawing.Point(37, 222);
             this.txbox_password.Name = "txbox_password";
-            this.txbox_password.Size = new System.Drawing.Size(534, 94);
+            this.txbox_password.Size = new System.Drawing.Size(357, 65);
             this.txbox_password.TabIndex = 1;
             this.txbox_password.UseSystemPasswordChar = true;
             // 
             // btn_login
             // 
-            this.btn_login.Location = new System.Drawing.Point(267, 503);
-            this.btn_login.Margin = new System.Windows.Forms.Padding(4);
+            this.btn_login.Location = new System.Drawing.Point(178, 335);
             this.btn_login.Name = "btn_login";
-            this.btn_login.Size = new System.Drawing.Size(112, 34);
+            this.btn_login.Size = new System.Drawing.Size(75, 23);
             this.btn_login.TabIndex = 2;
             this.btn_login.Text = "login";
             this.btn_login.UseVisualStyleBackColor = true;
@@ -72,19 +69,17 @@ namespace _51
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("新細明體", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label1.Location = new System.Drawing.Point(238, 62);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(159, 41);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(170, 72);
+            this.label1.Size = new System.Drawing.Size(115, 48);
             this.label1.TabIndex = 3;
             this.label1.Text = "login";
             // 
             // btn_sign_up
             // 
-            this.btn_sign_up.Location = new System.Drawing.Point(267, 566);
-            this.btn_sign_up.Margin = new System.Windows.Forms.Padding(4);
+            this.btn_sign_up.Location = new System.Drawing.Point(178, 377);
             this.btn_sign_up.Name = "btn_sign_up";
-            this.btn_sign_up.Size = new System.Drawing.Size(112, 34);
+            this.btn_sign_up.Size = new System.Drawing.Size(75, 23);
             this.btn_sign_up.TabIndex = 4;
             this.btn_sign_up.Text = "sign up";
             this.btn_sign_up.UseVisualStyleBackColor = true;
@@ -94,27 +89,25 @@ namespace _51
             // 
             this.label_account_warning.AutoSize = true;
             this.label_account_warning.ForeColor = System.Drawing.Color.Red;
-            this.label_account_warning.Location = new System.Drawing.Point(323, 286);
-            this.label_account_warning.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label_account_warning.Location = new System.Drawing.Point(215, 191);
             this.label_account_warning.Name = "label_account_warning";
-            this.label_account_warning.Size = new System.Drawing.Size(0, 18);
+            this.label_account_warning.Size = new System.Drawing.Size(0, 12);
             this.label_account_warning.TabIndex = 5;
             // 
             // label_password_warning
             // 
             this.label_password_warning.AutoSize = true;
             this.label_password_warning.ForeColor = System.Drawing.Color.Red;
-            this.label_password_warning.Location = new System.Drawing.Point(323, 456);
-            this.label_password_warning.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label_password_warning.Location = new System.Drawing.Point(215, 304);
             this.label_password_warning.Name = "label_password_warning";
-            this.label_password_warning.Size = new System.Drawing.Size(0, 18);
+            this.label_password_warning.Size = new System.Drawing.Size(0, 12);
             this.label_password_warning.TabIndex = 6;
             // 
             // login
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(647, 656);
+            this.ClientSize = new System.Drawing.Size(431, 437);
             this.Controls.Add(this.label_password_warning);
             this.Controls.Add(this.label_account_warning);
             this.Controls.Add(this.btn_sign_up);
@@ -122,9 +115,9 @@ namespace _51
             this.Controls.Add(this.btn_login);
             this.Controls.Add(this.txbox_password);
             this.Controls.Add(this.txbox_account);
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "login";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.login_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

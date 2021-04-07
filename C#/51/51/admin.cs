@@ -13,15 +13,12 @@ namespace _51
 {
     public partial class admin : Form
     {
-        //SqlConnection cn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;" +
-        //                                                                            "AttachDbFilename=C:\\Program Files\\Microsoft SQL Server\\MSSQL15.IWLYF\\MSSQL\\DATA\\51 - 複製.mdf;" +
-        //                                                                            "Integrated Security=True;" +
-        //                                                                            "Connect Timeout=30;");
-        SqlConnection cn1 = new SqlConnection("Server=LAPTOP-T4HKALLM\\IWLYF;" +
+        SqlConnection cn = new SqlConnection();
+        SqlConnection cn2 = new SqlConnection("Server=LAPTOP-T4HKALLM\\IWLYF;" +
                                                                                     "Database=51;" +
                                                                                     "Integrated Security=true;" +
                                                                                     "Max Pool Size=10000");
-        SqlConnection cn = new SqlConnection("Server=DESKTOP-B4U5A7I;" +
+        SqlConnection cn1 = new SqlConnection("Server=DESKTOP-B4U5A7I;" +
                                                                                     "Database=51;" +
                                                                                     "Integrated Security=true;" +
                                                                                     "Max Pool Size=10000");
@@ -40,15 +37,21 @@ namespace _51
             cmd.ExecuteNonQuery();
             cn.Close();
         }
-        public admin()
+        public admin(SqlConnection connection)
         {
             InitializeComponent();
+            cn = connection;
 
         }
         private void admin_Load(object sender, EventArgs e)
         {
+            DataTable descriptioin = GetData("SELECT * FROM Description WHERE description_id='1'");
             dgv_users.DataSource = GetData("SELECT * FROM user_data WHERE  state='1'");
             dgv_salers.DataSource = GetData("SELECT * FROM saler WHERE state='1'");
+            txbox_companyDescription.Text = descriptioin.Rows[0]["company_description"].ToString();
+            txbox_cardDescription.Text = descriptioin.Rows[0]["card_description"].ToString();
+            txbox_toKnow.Text = descriptioin.Rows[0]["toKnow"].ToString();
+            txbox_news.Text = descriptioin.Rows[0]["news"].ToString();
         }
         private void btn_logout_Click(object sender, EventArgs e)
         {
@@ -309,5 +312,29 @@ namespace _51
                 MessageBox.Show(ex.Message);
             }
         }
+
+        private void btn_apply_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                RunSQLcmd("UPDATE Description " +
+                                        "SET company_description='" + txbox_companyDescription.Text + "'," +
+                                                "card_description='" + txbox_cardDescription.Text + "'," +
+                                                "toKnow='" + txbox_toKnow.Text + "'," +
+                                                "news='"+txbox_news.Text+"' "+
+                                                "WHERE description_id=1");
+                MessageBox.Show("apply successful",
+                                                    "information",
+                                                    MessageBoxButtons.OK,
+                                                    MessageBoxIcon.Information);
+                admin_Load(sender, e);
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+       
     }
 }
