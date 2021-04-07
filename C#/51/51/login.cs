@@ -15,16 +15,7 @@ namespace _51
     {
         SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
         SqlConnection cn = new SqlConnection();
-        SqlConnection cn2 = new SqlConnection("Server=LAPTOP-T4HKALLM\\IWLYF;" +
-                                                                                    "Database=51;" +
-                                                                                    "Integrated Security=true;" +
-                                                                                    "Max Pool Size=10000");
-        SqlConnection cn1 = new SqlConnection("Server=DESKTOP-B4U5A7I;" +
-                                                                                    "Database=51;" +
-                                                                                    "Integrated Security=true;" +
-                                                                                    "Max Pool Size=10000");
-
-
+      
         private DataTable GetData(string cnString)
         {
             DataTable dt = new DataTable();
@@ -41,7 +32,16 @@ namespace _51
         }
         public login()
         {
-            InitializeComponent();            
+            InitializeComponent();
+        }
+        private void login_Load(object sender, EventArgs e)
+        {
+            cn = new SqlConnection();
+            builder.DataSource = "(LocalDB)\\MSSQLLocalDB";
+            builder.AttachDBFilename = Application.StartupPath + "\\login_db.mdf";
+            builder.IntegratedSecurity = true;
+            builder.ConnectTimeout = 30;
+            cn.ConnectionString = builder.ConnectionString;
         }
 
         private void btn_login_Click(object sender, EventArgs e)
@@ -61,7 +61,7 @@ namespace _51
                             this.Hide();
                             break;
                         case 2:
-                            saler s = new saler(cn);
+                            saler s = new saler(tmp,cn);
                             s.Show();
                             this.Hide();
                             break;
@@ -117,14 +117,7 @@ namespace _51
             }
         }
 
-        private void login_Load(object sender, EventArgs e)
-        {
-            builder.DataSource = "(LocalDB)\\MSSQLLocalDB";
-            builder.AttachDBFilename = Application.StartupPath + "\\login_db.mdf";
-            builder.IntegratedSecurity = true;
-            builder.ConnectTimeout = 30;
-            cn.ConnectionString = builder.ConnectionString;
-        }
+        
     }
 }
 

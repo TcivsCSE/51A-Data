@@ -13,17 +13,8 @@ namespace _51
 {
     public partial class saler : Form
     {
-        DataTable dt_personalInfo = new DataTable();
-        DataTable dt_card_information = new DataTable();
+        DataTable dt_pointInfo = new DataTable();
         SqlConnection cn = new SqlConnection();
-        SqlConnection cn2 = new SqlConnection("Server=LAPTOP-T4HKALLM\\IWLYF;" +
-                                                                                    "Database=51;" +
-                                                                                    "Integrated Security=true;" +
-                                                                                    "Max Pool Size=10000");
-        SqlConnection cn1 = new SqlConnection("Server=DESKTOP-B4U5A7I;" +
-                                                                                    "Database=51;" +
-                                                                                    "Integrated Security=true;" +
-                                                                                    "Max Pool Size=10000");
 
         private DataTable GetData(string cnString)
         {
@@ -39,16 +30,20 @@ namespace _51
             cmd.ExecuteNonQuery();
             cn.Close();
         }
-        public saler(SqlConnection connection)
+        public saler(DataTable dt,SqlConnection connection)
         {
             InitializeComponent();
-            dgv_cardId.DataSource = GetData("SELECT * FROM card_type");
-
             cn = connection;
+            dt_pointInfo = GetData("SELECT * FROM service_point  WHERE usingAccount_id='" + dt.Rows[0]["user_id"] + "'");
         }
         private void saler_Load(object sender, EventArgs e)
         {
-
+            dgv_cardId.DataSource = GetData("SELECT * FROM card_type");
+            DataTable descriptioin = GetData("SELECT * FROM Description WHERE description_id='1'");
+            label_companyDescription.Text = descriptioin.Rows[0]["company_description"].ToString();
+            label_cardDescription.Text = descriptioin.Rows[0]["card_description"].ToString();
+            label_toKnow.Text = descriptioin.Rows[0]["toKnow"].ToString();
+            label_news.Text = descriptioin.Rows[0]["news"].ToString();
         }
         private void btn_logout_Click(object sender, EventArgs e)
         {
@@ -62,15 +57,17 @@ namespace _51
         {
             try
             {
-                int balance = Convert.ToInt32(GetData("SELECT balance FROM card_data WHERE card_id='" + txbox_cardIdRefund.Text + "'").Rows[0]["balance"]);
-                RunSQLcmd("UPDATE card_data " +
-                                        "SET state=0" +
-                                        "WHERE card_id='" + txbox_cardIdRefund.Text + "'");
+                int balance = Convert.ToInt32(GetData("SELECT balance FROM card_data WHERE card_id='" + txbox_cardIdRefund.Text + "' AND state=1").Rows[0]["balance"]);
                 MessageBox.Show("The card has been Deactivate\nPlease refund"+balance.ToString()+"dollar",
                                                     "Information",
                                                     MessageBoxButtons.OK,
                                                     MessageBoxIcon.Information);
+                RunSQLcmd("UPDATE card_data " +
+                                        "SET state=0,balance=0 " +
+                                        "WHERE card_id='" + txbox_cardIdRefund.Text + "'");
+                
                 txbox_cardIdRefund.Text = "";
+                //TODO
             }
             catch(Exception ex)
             {
@@ -83,18 +80,17 @@ namespace _51
         {
             try
             {
-                dt_personalInfo = GetData("SELECT * FROM user_data WHERE account='" +
+                DataTable dt_personalInfo = GetData("SELECT * FROM user_data WHERE account='" +
                                                                      txbox_userAccountBuy.Text + "'");
-                DataTable dt_cardTypeId = new DataTable();
                 RunSQLcmd("INSERT INTO card_data(user_id,cardType_id,balance,state) VALUES('" +
                                         dt_personalInfo.Rows[0]["user_id"] + "','" +
-                                        txbox_cardTypeIdBuy.Text + "','0','1')");
+                                        dgv_cardId.SelectedRows[0].Cells["cardType_id"].Value + "','0','1')");
                 MessageBox.Show("trade done",
                                                     "Information",
                                                     MessageBoxButtons.OK,
                                                     MessageBoxIcon.Information);
-                txbox_cardTypeIdBuy.Text = "";
                 txbox_userAccountBuy.Text = "";
+                //TODO
             }
             catch (Exception ex)
             {
@@ -102,9 +98,16 @@ namespace _51
             }
         }
 
-        private void tp_refundCard_Click(object sender, EventArgs e)
+        private void tp_fixCard_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                //TODO
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

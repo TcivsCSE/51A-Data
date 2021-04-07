@@ -18,14 +18,6 @@ namespace _51
 
         DataTable dt_PersonalInformation = new DataTable();
         SqlConnection cn = new SqlConnection();
-        SqlConnection cn2 = new SqlConnection("Server=LAPTOP-T4HKALLM\\IWLYF;" +
-                                                                                    "Database=51;" +
-                                                                                    "Integrated Security=true;" +
-                                                                                    "Max Pool Size=10000");
-        SqlConnection cn1 = new SqlConnection("Server=DESKTOP-B4U5A7I;" +
-                                                                                    "Database=51;" +
-                                                                                    "Integrated Security=true;" +
-                                                                                    "Max Pool Size=10000");
 
 
         private DataTable GetData(string cnString)
@@ -45,12 +37,19 @@ namespace _51
         public user(DataTable dt,SqlConnection connection)
         {
             InitializeComponent();
-            dt_PersonalInformation = dt;
             cn = connection;
+            dt_PersonalInformation = dt;
+            
         }       
         private void user_Load(object sender, EventArgs e)
         {
-            dgv_cardBalance.DataSource = GetData("SELECT * FROM card_data WHERE user_id='"+dt_PersonalInformation.Rows[0]["user_id"]+"'");
+            dgv_cardBalance.DataSource = GetData("SELECT * FROM card_data WHERE user_id='"+dt_PersonalInformation.Rows[0]["user_id"]+"' AND state=1");
+            dgv_bill.DataSource = GetData("SELECT bill_id,amount FROM bill WHERE user_id='"+dt_PersonalInformation.Rows[0]["user_id"]+"' AND state=0");
+            DataTable descriptioin = GetData("SELECT * FROM Description WHERE description_id='1'");
+            label_companyDescription.Text = descriptioin.Rows[0]["company_description"].ToString();
+            label_cardDescription.Text = descriptioin.Rows[0]["card_description"].ToString();
+            label_toKnow.Text = descriptioin.Rows[0]["toKnow"].ToString();
+            label_news.Text = descriptioin.Rows[0]["news"].ToString();
         }
 
 
@@ -78,7 +77,10 @@ namespace _51
         {
             try
             {
-                dgv_cardBalance.DataSource = GetData("SELECT * FROM card_data WHERE card_id='"+txbox_cardId.Text+"' AND user_id='"+dt_PersonalInformation.Rows[0]["user_id"]+"'");
+                DataTable tmp = GetData("SELECT * FROM card_data WHERE card_id='" + txbox_cardId.Text + "' AND user_id='" + dt_PersonalInformation.Rows[0]["user_id"] + "'");
+                dgv_cardBalance.DataSource = tmp;
+                MessageBox.Show("The balance of this card is "+tmp.Rows[0]["balance"]+"dollar");
+                //TODO
             }
             catch(Exception ex)
             {
@@ -109,6 +111,7 @@ namespace _51
                         txbox_hostCardId.Text = "";
                         txbox_subCardId.Text = "";
                         txbox_Amount.Text = "";
+                        //TODO
                     }
                     else
                     {
@@ -132,5 +135,87 @@ namespace _51
                 MessageBox.Show(ex.Message);
             }
         }
+        private void btn_storeValue_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DataTable tmp_card = GetData("SELECT * FROM card_data WHERE card_id='" + txbox_mainCardId.Text + "'");
+                RunSQLcmd("UPDATE card_data " +
+                                       "SET balance='"+(Convert.ToInt32(tmp_card.Rows[0]["balance"])+Convert.ToInt32(txbox_amountStoreValue.Text)).ToString()+"' "+
+                                       "WHERE card_id='"+tmp_card.Rows[0]["card_id"]+"'");
+                MessageBox.Show("please pay " + txbox_amountStoreValue.Text + " dollar using " + cbbox_paymentMrnthod.Text);
+                txbox_amountStoreValue.Text = "";
+                txbox_mainCardId.Text = "";
+                cbbox_paymentMrnthod.Text = "";
+                user_Load(sender, e);
+                //TODO
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btn_pay_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DataTable tmp = GetData("SELECT * FROM card_data WHERE card_id='" + txbox_payCard.Text + "'");
+                if (tmp.Rows[0]["user_id"].ToString() == dt_PersonalInformation.Rows[0]["user_id"].ToString())
+                {
+                    DataTable tmp_card = GetData("SELECT * FROM card_data WHERE card_id='" + txbox_payCard.Text + "'");
+                    if (Convert.ToInt32(dgv_bill.SelectedRows[0].Cells["amount"].Value) <=Convert.ToInt32(tmp_card.Rows[0]["balance"]))
+                    {
+                        RunSQLcmd("UPDATE bill " +
+                                               "SET state=1 " +
+                                               "WHERE bill_id='"+dgv_bill.SelectedRows[0].Cells["bill_id"].Value+"'");
+                        RunSQLcmd("UPDATE card_data " +
+                                               "SET balance='" + (Convert.ToInt32(tmp_card.Rows[0]["balance"]) - Convert.ToInt32(dgv_bill.SelectedRows[0].Cells["amount"].Value)).ToString() + "' " +
+                                               "WHERE card_id='"+txbox_payCard.Text+"'");
+                        MessageBox.Show("pay successful",
+                                                         "information",
+                                                         MessageBoxButtons.OK,
+                                                         MessageBoxIcon.Information);
+                        label_amount.Text = "amount:";
+                        txbox_payCard.Text = "";
+                        user_Load(sender, e);
+                        //TODO
+                    }
+                    else
+                    {
+                        MessageBox.Show("Insufficient balance",
+                                                         "information",
+                                                         MessageBoxButtons.OK,
+                                                         MessageBoxIcon.Information);
+                    }
+                    
+                }
+                else
+                {
+                    MessageBox.Show("the card is not yours",
+                                                     "information",
+                                                     MessageBoxButtons.OK,
+                                                     MessageBoxIcon.Information);
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btn_selectBill_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                label_amount.Text = "amount:" + dgv_bill.SelectedRows[0].Cells["amount"].Value;
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        
     }
 }

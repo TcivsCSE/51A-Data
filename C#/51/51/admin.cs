@@ -14,14 +14,6 @@ namespace _51
     public partial class admin : Form
     {
         SqlConnection cn = new SqlConnection();
-        SqlConnection cn2 = new SqlConnection("Server=LAPTOP-T4HKALLM\\IWLYF;" +
-                                                                                    "Database=51;" +
-                                                                                    "Integrated Security=true;" +
-                                                                                    "Max Pool Size=10000");
-        SqlConnection cn1 = new SqlConnection("Server=DESKTOP-B4U5A7I;" +
-                                                                                    "Database=51;" +
-                                                                                    "Integrated Security=true;" +
-                                                                                    "Max Pool Size=10000");
 
         private DataTable GetData(string cnString)
         {
@@ -41,13 +33,14 @@ namespace _51
         {
             InitializeComponent();
             cn = connection;
+            
 
         }
         private void admin_Load(object sender, EventArgs e)
         {
-            DataTable descriptioin = GetData("SELECT * FROM Description WHERE description_id='1'");
             dgv_users.DataSource = GetData("SELECT * FROM user_data WHERE  state='1'");
             dgv_salers.DataSource = GetData("SELECT * FROM saler WHERE state='1'");
+            DataTable descriptioin = GetData("SELECT * FROM Description WHERE description_id='1'");
             txbox_companyDescription.Text = descriptioin.Rows[0]["company_description"].ToString();
             txbox_cardDescription.Text = descriptioin.Rows[0]["card_description"].ToString();
             txbox_toKnow.Text = descriptioin.Rows[0]["toKnow"].ToString();
