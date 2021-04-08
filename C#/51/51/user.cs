@@ -29,6 +29,7 @@ namespace _51
         }
         private void RunSQLcmd(string cmdstring)
         {
+            MessageBox.Show(cmdstring);
             cn.Open();
             SqlCommand cmd = new SqlCommand(cmdstring, cn);
             cmd.ExecuteNonQuery();
@@ -44,7 +45,7 @@ namespace _51
         private void user_Load(object sender, EventArgs e)
         {
             dgv_cardBalance.DataSource = GetData("SELECT * FROM card_data WHERE user_id='"+dt_PersonalInformation.Rows[0]["user_id"]+"' AND state=1");
-            dgv_bill.DataSource = GetData("SELECT bill_id,amount FROM bill WHERE user_id='"+dt_PersonalInformation.Rows[0]["user_id"]+"' AND state=0");
+            dgv_bill.DataSource = GetData("SELECT * FROM bill WHERE user_id='"+dt_PersonalInformation.Rows[0]["user_id"]+"' AND state=1");
             DataTable descriptioin = GetData("SELECT * FROM Description WHERE description_id='1'");
             label_companyDescription.Text = descriptioin.Rows[0]["company_description"].ToString();
             label_cardDescription.Text = descriptioin.Rows[0]["card_description"].ToString();
@@ -81,6 +82,11 @@ namespace _51
                 dgv_cardBalance.DataSource = tmp;
                 MessageBox.Show("The balance of this card is "+tmp.Rows[0]["balance"]+"dollar");
                 //TODO
+                DataTable tmp_usingPoint = GetData("SELECT servicePoint_id FROM service_point WHERE point_name='"+txbox_usingPointName.Text+"'");
+                RunSQLcmd("INSERT into cardTrade_record (card_id,servicePoint_id, serviceType_id,time,amount) VALUES ('" +
+                                        txbox_cardId.Text+"','"+
+                                        tmp_usingPoint.Rows[0]["servicePoint_id"]+"',1,'" +
+                                        DateTime.Now.ToString()+"',0)");
             }
             catch(Exception ex)
             {
@@ -98,20 +104,45 @@ namespace _51
                 {
                     if (tmp_mainCard.Rows[0]["user_id"].ToString() == dt_PersonalInformation.Rows[0]["user_id"].ToString())
                     {
-                        RunSQLcmd("UPDATE card_data " +
-                                                "SET balance='" + (Convert.ToInt32(tmp_mainCard.Rows[0]["balance"]) - Convert.ToInt32(txbox_Amount.Text)).ToString() + "'" +
-                                                "WHERE card_id='" + txbox_hostCardId.Text + "'");
-                        RunSQLcmd("UPDATE card_data " +
-                                                "SET balance='" + (Convert.ToInt32(tmp_subCard.Rows[0]["balance"]) + Convert.ToInt32(txbox_Amount.Text)).ToString() + "'" +
-                                                "WHERE card_id='" + txbox_subCardId.Text + "'");
-                        MessageBox.Show("transfer successful",
-                                                            "information",
-                                                            MessageBoxButtons.OK,
-                                                            MessageBoxIcon.Information);
-                        txbox_hostCardId.Text = "";
-                        txbox_subCardId.Text = "";
-                        txbox_Amount.Text = "";
-                        //TODO
+                        DataTable tmp_usingPoint = GetData("SELECT servicePoint_id FROM service_point WHERE point_name='" + txbox_usingPointName.Text + "'");
+                        if (tmp_usingPoint.Rows.Count > 0)
+                        {
+                            RunSQLcmd("UPDATE card_data " +
+                                                    "SET balance='" + (Convert.ToInt32(tmp_mainCard.Rows[0]["balance"]) - Convert.ToInt32(txbox_Amount.Text)).ToString() + "'" +
+                                                    "WHERE card_id='" + txbox_hostCardId.Text + "'");
+                            RunSQLcmd("UPDATE card_data " +
+                                                    "SET balance='" + (Convert.ToInt32(tmp_subCard.Rows[0]["balance"]) + Convert.ToInt32(txbox_Amount.Text)).ToString() + "'" +
+                                                    "WHERE card_id='" + txbox_subCardId.Text + "'");
+                            MessageBox.Show("transfer successful",
+                                                                "information",
+                                                                MessageBoxButtons.OK,
+                                                                MessageBoxIcon.Information);
+                        
+                            //TODO
+                        
+                            RunSQLcmd("INSERT into cardTrade_record (card_id,servicePoint_id, serviceType_id,time,amount) VALUES ('" +
+                                                    txbox_hostCardId.Text + "','" +
+                                                    tmp_usingPoint.Rows[0]["servicePoint_id"] + "',4,'" +
+                                                    DateTime.Now.ToString() + "','" +
+                                                    txbox_Amount.Text+"')");
+                            RunSQLcmd("INSERT into cardTrade_record (card_id,servicePoint_id, serviceType_id,time,amount) VALUES ('" +
+                                                    txbox_subCardId.Text + "','" +
+                                                    tmp_usingPoint.Rows[0]["servicePoint_id"] + "',9,'" +
+                                                    DateTime.Now.ToString() + "','" +
+                                                    txbox_Amount.Text + "')");
+                        
+                            txbox_hostCardId.Text = "";
+                            txbox_subCardId.Text = "";
+                            txbox_Amount.Text = "";
+                        }
+                        else
+                        {
+                            MessageBox.Show("point not found",
+                                                        "information",
+                                                        MessageBoxButtons.OK,
+                                                        MessageBoxIcon.Information);
+                        }
+
                     }
                     else
                     {
@@ -139,16 +170,36 @@ namespace _51
         {
             try
             {
-                DataTable tmp_card = GetData("SELECT * FROM card_data WHERE card_id='" + txbox_mainCardId.Text + "'");
-                RunSQLcmd("UPDATE card_data " +
-                                       "SET balance='"+(Convert.ToInt32(tmp_card.Rows[0]["balance"])+Convert.ToInt32(txbox_amountStoreValue.Text)).ToString()+"' "+
-                                       "WHERE card_id='"+tmp_card.Rows[0]["card_id"]+"'");
-                MessageBox.Show("please pay " + txbox_amountStoreValue.Text + " dollar using " + cbbox_paymentMrnthod.Text);
-                txbox_amountStoreValue.Text = "";
-                txbox_mainCardId.Text = "";
-                cbbox_paymentMrnthod.Text = "";
-                user_Load(sender, e);
-                //TODO
+                DataTable tmp_usingPoint = GetData("SELECT servicePoint_id FROM service_point WHERE point_name='" + txbox_usingPointName.Text + "'");
+                if (tmp_usingPoint.Rows.Count > 0)
+                {
+                    DataTable tmp_card = GetData("SELECT * FROM card_data WHERE card_id='" + txbox_mainCardId.Text + "'");
+                    RunSQLcmd("UPDATE card_data " +
+                                           "SET balance='"+(Convert.ToInt32(tmp_card.Rows[0]["balance"])+Convert.ToInt32(txbox_amountStoreValue.Text)).ToString()+"' "+
+                                           "WHERE card_id='"+tmp_card.Rows[0]["card_id"]+"'");
+                    MessageBox.Show("please pay " + txbox_amountStoreValue.Text + " dollar using " + cbbox_paymentMrnthod.Text);
+
+                    //TODO
+                
+                    RunSQLcmd("INSERT into cardTrade_record (card_id,servicePoint_id, serviceType_id,time,amount) VALUES ('" +
+                                            txbox_mainCardId.Text + "','" +
+                                            tmp_usingPoint.Rows[0]["servicePoint_id"] + "',3,'" +
+                                            DateTime.Now.ToString() + "','" +
+                                            txbox_amountStoreValue.Text + "')");
+
+                    txbox_amountStoreValue.Text = "";
+                    txbox_mainCardId.Text = "";
+                    cbbox_paymentMrnthod.Text = "";
+                    user_Load(sender, e);
+                }
+                else
+                {
+                    MessageBox.Show("point not found",
+                                                        "information",
+                                                        MessageBoxButtons.OK,
+                                                        MessageBoxIcon.Information);
+                }
+                
             }
             catch(Exception ex)
             {
@@ -166,20 +217,40 @@ namespace _51
                     DataTable tmp_card = GetData("SELECT * FROM card_data WHERE card_id='" + txbox_payCard.Text + "'");
                     if (Convert.ToInt32(dgv_bill.SelectedRows[0].Cells["amount"].Value) <=Convert.ToInt32(tmp_card.Rows[0]["balance"]))
                     {
-                        RunSQLcmd("UPDATE bill " +
-                                               "SET state=1 " +
-                                               "WHERE bill_id='"+dgv_bill.SelectedRows[0].Cells["bill_id"].Value+"'");
-                        RunSQLcmd("UPDATE card_data " +
-                                               "SET balance='" + (Convert.ToInt32(tmp_card.Rows[0]["balance"]) - Convert.ToInt32(dgv_bill.SelectedRows[0].Cells["amount"].Value)).ToString() + "' " +
-                                               "WHERE card_id='"+txbox_payCard.Text+"'");
-                        MessageBox.Show("pay successful",
-                                                         "information",
-                                                         MessageBoxButtons.OK,
-                                                         MessageBoxIcon.Information);
-                        label_amount.Text = "amount:";
-                        txbox_payCard.Text = "";
-                        user_Load(sender, e);
-                        //TODO
+                        DataTable tmp_usingPoint = GetData("SELECT servicePoint_id FROM service_point WHERE point_name='" + txbox_usingPointName.Text + "'");
+                        if (tmp_usingPoint.Rows.Count > 0)
+                        {
+                            RunSQLcmd("UPDATE bill " +
+                                                   "SET state=0 " +
+                                                   "WHERE bill_id='"+dgv_bill.SelectedRows[0].Cells["bill_id"].Value+"'");
+                            RunSQLcmd("UPDATE card_data " +
+                                                   "SET balance='" + (Convert.ToInt32(tmp_card.Rows[0]["balance"]) - Convert.ToInt32(dgv_bill.SelectedRows[0].Cells["amount"].Value)).ToString() + "' " +
+                                                   "WHERE card_id='"+txbox_payCard.Text+"'");
+                            MessageBox.Show("pay successful",
+                                                             "information",
+                                                             MessageBoxButtons.OK,
+                                                             MessageBoxIcon.Information);
+
+                            //TODO 
+                            RunSQLcmd("INSERT into cardTrade_record (card_id,servicePoint_id, serviceType_id,time,amount) VALUES ('" +
+                                            txbox_payCard.Text + "','" +
+                                            tmp_usingPoint.Rows[0]["servicePoint_id"] + "','" +
+                                            (Convert.ToInt32(dgv_bill.SelectedRows[0].Cells["menthod_id"].Value)+6).ToString()+"','" +
+                                            DateTime.Now.ToString() + "','" +
+                                            dgv_bill.SelectedRows[0].Cells["amount"].Value.ToString() + "')");
+
+                            label_amount.Text = "amount:";
+                            txbox_payCard.Text = "";
+                            user_Load(sender, e);
+                        }
+                        else
+                        {
+                            MessageBox.Show("point not found",
+                                                                "information",
+                                                                MessageBoxButtons.OK,
+                                                                MessageBoxIcon.Information);
+                        }
+
                     }
                     else
                     {

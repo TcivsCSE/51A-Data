@@ -38,7 +38,7 @@ namespace _51
         {
             cn = new SqlConnection();
             builder.DataSource = "(LocalDB)\\MSSQLLocalDB";
-            builder.AttachDBFilename = Application.StartupPath + "\\login_db.mdf";
+            builder.AttachDBFilename = Application.StartupPath + "\\51.mdf";
             builder.IntegratedSecurity = true;
             builder.ConnectTimeout = 30;
             cn.ConnectionString = builder.ConnectionString;

@@ -43,6 +43,8 @@ namespace _51
             this.txbox_cardIdRefund = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.tp_fixCard = new System.Windows.Forms.TabPage();
+            this.txbox_cardIdfix = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.label_news = new System.Windows.Forms.Label();
             this.label_toKnow = new System.Windows.Forms.Label();
@@ -93,12 +95,13 @@ namespace _51
             // 
             // btn_cardFixing
             // 
-            this.btn_cardFixing.Location = new System.Drawing.Point(516, 365);
+            this.btn_cardFixing.Location = new System.Drawing.Point(249, 253);
             this.btn_cardFixing.Name = "btn_cardFixing";
             this.btn_cardFixing.Size = new System.Drawing.Size(167, 34);
             this.btn_cardFixing.TabIndex = 3;
             this.btn_cardFixing.Text = "card fixing";
             this.btn_cardFixing.UseVisualStyleBackColor = true;
+            this.btn_cardFixing.Click += new System.EventHandler(this.btn_cardFixing_Click);
             // 
             // txbox_userAccountBuy
             // 
@@ -200,6 +203,8 @@ namespace _51
             // 
             // tp_fixCard
             // 
+            this.tp_fixCard.Controls.Add(this.txbox_cardIdfix);
+            this.tp_fixCard.Controls.Add(this.label2);
             this.tp_fixCard.Controls.Add(this.btn_cardFixing);
             this.tp_fixCard.Location = new System.Drawing.Point(4, 22);
             this.tp_fixCard.Margin = new System.Windows.Forms.Padding(2);
@@ -209,7 +214,23 @@ namespace _51
             this.tp_fixCard.TabIndex = 2;
             this.tp_fixCard.Text = "fix card";
             this.tp_fixCard.UseVisualStyleBackColor = true;
-            this.tp_fixCard.Click += new System.EventHandler(this.tp_fixCard_Click);
+            // 
+            // txbox_cardIdfix
+            // 
+            this.txbox_cardIdfix.Location = new System.Drawing.Point(211, 211);
+            this.txbox_cardIdfix.Name = "txbox_cardIdfix";
+            this.txbox_cardIdfix.Size = new System.Drawing.Size(254, 22);
+            this.txbox_cardIdfix.TabIndex = 9;
+            // 
+            // label2
+            // 
+            this.label2.Font = new System.Drawing.Font("新細明體", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label2.Location = new System.Drawing.Point(205, 165);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(275, 29);
+            this.label2.TabIndex = 10;
+            this.label2.Text = "card id";
             // 
             // tabPage1
             // 
@@ -318,6 +339,7 @@ namespace _51
             this.tp_refundCard.ResumeLayout(false);
             this.tp_refundCard.PerformLayout();
             this.tp_fixCard.ResumeLayout(false);
+            this.tp_fixCard.PerformLayout();
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             this.ResumeLayout(false);
@@ -349,5 +371,7 @@ namespace _51
         private System.Windows.Forms.Label label_news;
         private System.Windows.Forms.Label label_toKnow;
         private System.Windows.Forms.Label label_cardDescription;
+        private System.Windows.Forms.TextBox txbox_cardIdfix;
+        private System.Windows.Forms.Label label2;
     }
 }

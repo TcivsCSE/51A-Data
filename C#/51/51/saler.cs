@@ -58,16 +58,26 @@ namespace _51
             try
             {
                 int balance = Convert.ToInt32(GetData("SELECT balance FROM card_data WHERE card_id='" + txbox_cardIdRefund.Text + "' AND state=1").Rows[0]["balance"]);
-                MessageBox.Show("The card has been Deactivate\nPlease refund"+balance.ToString()+"dollar",
+                MessageBox.Show("The card has been Deactivate\nPlease refund "+balance.ToString()+" dollar",
                                                     "Information",
                                                     MessageBoxButtons.OK,
                                                     MessageBoxIcon.Information);
                 RunSQLcmd("UPDATE card_data " +
                                         "SET state=0,balance=0 " +
                                         "WHERE card_id='" + txbox_cardIdRefund.Text + "'");
-                
-                txbox_cardIdRefund.Text = "";
+
+
                 //TODO
+                RunSQLcmd("INSERT into serviceTrade_record (card_id,servicePoint_id, serviceType_id,time) VALUES ('" +
+                                        txbox_cardIdRefund.Text + "','" +
+                                        dt_pointInfo.Rows[0]["servicePoint_id"] + "',5,'" +
+                                        DateTime.Now.ToString() + "')");
+
+                txbox_cardIdRefund.Text = "";
+                MessageBox.Show("refund done",
+                                                    "information",
+                                                    MessageBoxButtons.OK,
+                                                    MessageBoxIcon.Information);
             }
             catch(Exception ex)
             {
@@ -89,25 +99,42 @@ namespace _51
                                                     "Information",
                                                     MessageBoxButtons.OK,
                                                     MessageBoxIcon.Information);
-                txbox_userAccountBuy.Text = "";
+
                 //TODO
+                DataTable dt_newCard = GetData("SELECT MAX(card_id) AS card_id  FROM card_data");
+                RunSQLcmd("INSERT into serviceTrade_record (card_id,servicePoint_id, serviceType_id,time) VALUES ('" +
+                                         dt_newCard.Rows[0]["card_id"]+ "','" +
+                                        dt_pointInfo.Rows[0]["servicePoint_id"] + "',2,'" +
+                                        DateTime.Now.ToString() + "')");
+                
+                txbox_userAccountBuy.Text = "";
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
         }
-
-        private void tp_fixCard_Click(object sender, EventArgs e)
+        private void btn_cardFixing_Click(object sender, EventArgs e)
         {
             try
             {
                 //TODO
+                RunSQLcmd("INSERT into serviceTrade_record (card_id,servicePoint_id, serviceType_id,time) VALUES ('" +
+                                         txbox_cardIdfix.Text + "','" +
+                                        dt_pointInfo.Rows[0]["servicePoint_id"] + "',6,'" +
+                                        DateTime.Now.ToString() + "')");
+                txbox_cardIdfix.Text = "";
+                MessageBox.Show("fix done",
+                                                    "information",
+                                                    MessageBoxButtons.OK,
+                                                    MessageBoxIcon.Information);
             }
             catch(Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
         }
+
+        
     }
 }
