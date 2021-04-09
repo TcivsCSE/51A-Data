@@ -39,6 +39,7 @@ namespace _51
         private void saler_Load(object sender, EventArgs e)
         {
             dgv_cardId.DataSource = GetData("SELECT * FROM card_type");
+            dgv_cards.DataSource = GetData("SELECT * FROM card_data");
             DataTable descriptioin = GetData("SELECT * FROM Description WHERE description_id='1'");
             label_companyDescription.Text = descriptioin.Rows[0]["company_description"].ToString();
             label_cardDescription.Text = descriptioin.Rows[0]["card_description"].ToString();
@@ -118,9 +119,17 @@ namespace _51
         {
             try
             {
+                DataTable tmp_acccount = GetData("SELECT * FROM user_data WHERE account='" + txbox_userAccount.Text + "'");
+                RunSQLcmd("UPDATE card_data " +
+                                        "SET user_id='"+tmp_acccount.Rows[0]["user_id"].ToString()+
+                                        "',balance= '"+txbox_balance.Text+"'," +
+                                        "state='"+txbox_state.Text+"'"+
+                                        "WHERE card_id='"+dgv_cards.SelectedRows[0].Cells["card_id"].Value.ToString()+"'");
+                saler_Load(sender, e);
+
                 //TODO
                 RunSQLcmd("INSERT into serviceTrade_record (card_id,servicePoint_id, serviceType_id,time) VALUES ('" +
-                                         txbox_cardIdfix.Text + "','" +
+                                         dgv_cards.SelectedRows[0].Cells["card_id"].Value.ToString() + "','" +
                                         dt_pointInfo.Rows[0]["servicePoint_id"] + "',6,'" +
                                         DateTime.Now.ToString() + "')");
                 txbox_cardIdfix.Text = "";
@@ -135,6 +144,35 @@ namespace _51
             }
         }
 
-        
+        private void btn_searchCard_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                dgv_cards.DataSource = GetData("SELECT * FROM card_data WHERE card_id = '" + txbox_cardIdfix.Text + "'");
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btn_select_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dgv_cards_SelectionChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                DataTable tmp_account = GetData("SELECT * FROM user_data WHERE user_id = '" + dgv_cards.SelectedRows[0].Cells["user_id"].Value.ToString() + "'");
+                txbox_userAccount.Text = tmp_account.Rows[0]["name"].ToString();
+                txbox_balance.Text = dgv_cards.SelectedRows[0].Cells["balance"].Value.ToString();
+                txbox_state.Text = dgv_cards.SelectedRows[0].Cells["state"].Value.ToString();
+            }
+            catch (Exception ex)
+            {
+            }
+        }
     }
 }

@@ -272,20 +272,6 @@ namespace _51
             }
         }
 
-        private void btn_changeSelectedSaler_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                DataTable tmp_workPoint = GetData("SELECT * FROM service_point WHERE servicePoint_id ='" + dgv_salers.SelectedRows[0].Cells["workPoint_id"].Value + "'");
-                txbox_saleNameAdd.Text = dgv_salers.SelectedRows[0].Cells["saler_name"].Value.ToString();
-                txbox_workpoint.Text = tmp_workPoint.Rows[0]["point_name"].ToString();
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
         private void btn_applySalerChange_Click(object sender, EventArgs e)
         {
             try
@@ -328,6 +314,17 @@ namespace _51
             }
         }
 
-       
+        private void dgv_salers_SelectionChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                DataTable tmp_workPoint = GetData("SELECT * FROM service_point WHERE servicePoint_id ='" + dgv_salers.SelectedRows[0].Cells["workPoint_id"].Value + "'");
+                txbox_saleNameAdd.Text = dgv_salers.SelectedRows[0].Cells["saler_name"].Value.ToString();
+                txbox_workpoint.Text = tmp_workPoint.Rows[0]["point_name"].ToString();
+            }
+            catch (Exception ex)
+            {
+            }
+        }
     }
 }

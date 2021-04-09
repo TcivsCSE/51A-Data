@@ -48,6 +48,8 @@ namespace _51
             this.label1 = new System.Windows.Forms.Label();
             this.txbox_account = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.label15 = new System.Windows.Forms.Label();
+            this.txbox_news = new System.Windows.Forms.TextBox();
             this.btn_apply = new System.Windows.Forms.Button();
             this.label14 = new System.Windows.Forms.Label();
             this.txbox_toKnow = new System.Windows.Forms.TextBox();
@@ -58,7 +60,6 @@ namespace _51
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.btn_applySalerChange = new System.Windows.Forms.Button();
-            this.btn_changeSelectedSaler = new System.Windows.Forms.Button();
             this.btn_delUser = new System.Windows.Forms.Button();
             this.btn_useradd = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
@@ -82,8 +83,6 @@ namespace _51
             this.label5 = new System.Windows.Forms.Label();
             this.txbox_salerName = new System.Windows.Forms.TextBox();
             this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.label15 = new System.Windows.Forms.Label();
-            this.txbox_news = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_users)).BeginInit();
@@ -305,6 +304,23 @@ namespace _51
             this.tabPage2.Text = "information control ";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(3, 288);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(28, 12);
+            this.label15.TabIndex = 8;
+            this.label15.Text = "news";
+            // 
+            // txbox_news
+            // 
+            this.txbox_news.Location = new System.Drawing.Point(3, 303);
+            this.txbox_news.Multiline = true;
+            this.txbox_news.Name = "txbox_news";
+            this.txbox_news.Size = new System.Drawing.Size(881, 76);
+            this.txbox_news.TabIndex = 7;
+            // 
             // btn_apply
             // 
             this.btn_apply.Location = new System.Drawing.Point(809, 435);
@@ -313,7 +329,6 @@ namespace _51
             this.btn_apply.TabIndex = 6;
             this.btn_apply.Text = "apply change";
             this.btn_apply.UseVisualStyleBackColor = true;
-            this.btn_apply.Click += new System.EventHandler(this.btn_apply_Click);
             // 
             // label14
             // 
@@ -386,7 +401,6 @@ namespace _51
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.btn_applySalerChange);
-            this.groupBox3.Controls.Add(this.btn_changeSelectedSaler);
             this.groupBox3.Controls.Add(this.btn_delUser);
             this.groupBox3.Controls.Add(this.btn_useradd);
             this.groupBox3.Controls.Add(this.label10);
@@ -403,24 +417,13 @@ namespace _51
             // btn_applySalerChange
             // 
             this.btn_applySalerChange.Font = new System.Drawing.Font("新細明體", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.btn_applySalerChange.Location = new System.Drawing.Point(21, 185);
+            this.btn_applySalerChange.Location = new System.Drawing.Point(21, 124);
             this.btn_applySalerChange.Name = "btn_applySalerChange";
             this.btn_applySalerChange.Size = new System.Drawing.Size(188, 46);
             this.btn_applySalerChange.TabIndex = 20;
             this.btn_applySalerChange.Text = "apply chnge";
             this.btn_applySalerChange.UseVisualStyleBackColor = true;
             this.btn_applySalerChange.Click += new System.EventHandler(this.btn_applySalerChange_Click);
-            // 
-            // btn_changeSelectedSaler
-            // 
-            this.btn_changeSelectedSaler.Font = new System.Drawing.Font("新細明體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.btn_changeSelectedSaler.Location = new System.Drawing.Point(21, 133);
-            this.btn_changeSelectedSaler.Name = "btn_changeSelectedSaler";
-            this.btn_changeSelectedSaler.Size = new System.Drawing.Size(188, 46);
-            this.btn_changeSelectedSaler.TabIndex = 19;
-            this.btn_changeSelectedSaler.Text = "change selected saler";
-            this.btn_changeSelectedSaler.UseVisualStyleBackColor = true;
-            this.btn_changeSelectedSaler.Click += new System.EventHandler(this.btn_changeSelectedSaler_Click);
             // 
             // btn_delUser
             // 
@@ -517,6 +520,7 @@ namespace _51
             this.dgv_salers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgv_salers.Size = new System.Drawing.Size(437, 422);
             this.dgv_salers.TabIndex = 1;
+            this.dgv_salers.SelectionChanged += new System.EventHandler(this.dgv_salers_SelectionChanged);
             // 
             // groupBox2
             // 
@@ -642,23 +646,6 @@ namespace _51
             this.tabPage4.Text = "statistical report";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(3, 288);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(28, 12);
-            this.label15.TabIndex = 8;
-            this.label15.Text = "news";
-            // 
-            // txbox_news
-            // 
-            this.txbox_news.Location = new System.Drawing.Point(3, 303);
-            this.txbox_news.Multiline = true;
-            this.txbox_news.Name = "txbox_news";
-            this.txbox_news.Size = new System.Drawing.Size(881, 76);
-            this.txbox_news.TabIndex = 7;
-            // 
             // admin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -734,7 +721,6 @@ namespace _51
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.TextBox txbox_saleNameAdd;
         private System.Windows.Forms.Button btn_applySalerChange;
-        private System.Windows.Forms.Button btn_changeSelectedSaler;
         private System.Windows.Forms.TextBox txbox_usingAccount;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox txbox_companyDescription;

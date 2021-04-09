@@ -43,6 +43,15 @@ namespace _51
             this.txbox_cardIdRefund = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.tp_fixCard = new System.Windows.Forms.TabPage();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txbox_state = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txbox_balance = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txbox_userAccount = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.btn_searchCard = new System.Windows.Forms.Button();
+            this.dgv_cards = new System.Windows.Forms.DataGridView();
             this.txbox_cardIdfix = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -60,6 +69,7 @@ namespace _51
             ((System.ComponentModel.ISupportInitialize)(this.dgv_cardId)).BeginInit();
             this.tp_refundCard.SuspendLayout();
             this.tp_fixCard.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_cards)).BeginInit();
             this.tabPage1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -95,7 +105,7 @@ namespace _51
             // 
             // btn_cardFixing
             // 
-            this.btn_cardFixing.Location = new System.Drawing.Point(249, 253);
+            this.btn_cardFixing.Location = new System.Drawing.Point(515, 360);
             this.btn_cardFixing.Name = "btn_cardFixing";
             this.btn_cardFixing.Size = new System.Drawing.Size(167, 34);
             this.btn_cardFixing.TabIndex = 3;
@@ -203,6 +213,15 @@ namespace _51
             // 
             // tp_fixCard
             // 
+            this.tp_fixCard.Controls.Add(this.label6);
+            this.tp_fixCard.Controls.Add(this.txbox_state);
+            this.tp_fixCard.Controls.Add(this.label5);
+            this.tp_fixCard.Controls.Add(this.txbox_balance);
+            this.tp_fixCard.Controls.Add(this.label4);
+            this.tp_fixCard.Controls.Add(this.txbox_userAccount);
+            this.tp_fixCard.Controls.Add(this.button1);
+            this.tp_fixCard.Controls.Add(this.btn_searchCard);
+            this.tp_fixCard.Controls.Add(this.dgv_cards);
             this.tp_fixCard.Controls.Add(this.txbox_cardIdfix);
             this.tp_fixCard.Controls.Add(this.label2);
             this.tp_fixCard.Controls.Add(this.btn_cardFixing);
@@ -215,20 +234,99 @@ namespace _51
             this.tp_fixCard.Text = "fix card";
             this.tp_fixCard.UseVisualStyleBackColor = true;
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(515, 128);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(25, 12);
+            this.label6.TabIndex = 20;
+            this.label6.Text = "state";
+            // 
+            // txbox_state
+            // 
+            this.txbox_state.Location = new System.Drawing.Point(512, 146);
+            this.txbox_state.Name = "txbox_state";
+            this.txbox_state.Size = new System.Drawing.Size(169, 22);
+            this.txbox_state.TabIndex = 19;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(515, 85);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(40, 12);
+            this.label5.TabIndex = 18;
+            this.label5.Text = "balance";
+            // 
+            // txbox_balance
+            // 
+            this.txbox_balance.Location = new System.Drawing.Point(512, 103);
+            this.txbox_balance.Name = "txbox_balance";
+            this.txbox_balance.Size = new System.Drawing.Size(169, 22);
+            this.txbox_balance.TabIndex = 17;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(515, 42);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(66, 12);
+            this.label4.TabIndex = 16;
+            this.label4.Text = "user_account";
+            // 
+            // txbox_userAccount
+            // 
+            this.txbox_userAccount.Location = new System.Drawing.Point(512, 60);
+            this.txbox_userAccount.Name = "txbox_userAccount";
+            this.txbox_userAccount.Size = new System.Drawing.Size(169, 22);
+            this.txbox_userAccount.TabIndex = 15;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(1, 370);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 13;
+            this.button1.Text = "show all ";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // btn_searchCard
+            // 
+            this.btn_searchCard.Location = new System.Drawing.Point(371, 372);
+            this.btn_searchCard.Name = "btn_searchCard";
+            this.btn_searchCard.Size = new System.Drawing.Size(132, 23);
+            this.btn_searchCard.TabIndex = 12;
+            this.btn_searchCard.Text = "serach card";
+            this.btn_searchCard.UseVisualStyleBackColor = true;
+            this.btn_searchCard.Click += new System.EventHandler(this.btn_searchCard_Click);
+            // 
+            // dgv_cards
+            // 
+            this.dgv_cards.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv_cards.Location = new System.Drawing.Point(1, 0);
+            this.dgv_cards.Name = "dgv_cards";
+            this.dgv_cards.RowTemplate.Height = 24;
+            this.dgv_cards.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgv_cards.Size = new System.Drawing.Size(508, 366);
+            this.dgv_cards.TabIndex = 0;
+            this.dgv_cards.TabStop = false;
+            this.dgv_cards.SelectionChanged += new System.EventHandler(this.dgv_cards_SelectionChanged);
+            // 
             // txbox_cardIdfix
             // 
-            this.txbox_cardIdfix.Location = new System.Drawing.Point(211, 211);
+            this.txbox_cardIdfix.Location = new System.Drawing.Point(147, 372);
             this.txbox_cardIdfix.Name = "txbox_cardIdfix";
-            this.txbox_cardIdfix.Size = new System.Drawing.Size(254, 22);
+            this.txbox_cardIdfix.Size = new System.Drawing.Size(218, 22);
             this.txbox_cardIdfix.TabIndex = 9;
             // 
             // label2
             // 
             this.label2.Font = new System.Drawing.Font("新細明體", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label2.Location = new System.Drawing.Point(205, 165);
+            this.label2.Location = new System.Drawing.Point(75, 368);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(275, 29);
+            this.label2.Size = new System.Drawing.Size(67, 29);
             this.label2.TabIndex = 10;
             this.label2.Text = "card id";
             // 
@@ -340,6 +438,7 @@ namespace _51
             this.tp_refundCard.PerformLayout();
             this.tp_fixCard.ResumeLayout(false);
             this.tp_fixCard.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_cards)).EndInit();
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             this.ResumeLayout(false);
@@ -373,5 +472,14 @@ namespace _51
         private System.Windows.Forms.Label label_cardDescription;
         private System.Windows.Forms.TextBox txbox_cardIdfix;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btn_searchCard;
+        private System.Windows.Forms.DataGridView dgv_cards;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox txbox_state;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox txbox_balance;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox txbox_userAccount;
     }
 }
