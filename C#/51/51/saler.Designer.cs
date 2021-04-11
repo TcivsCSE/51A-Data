@@ -428,6 +428,7 @@ namespace _51
             this.Controls.Add(this.btn_logout);
             this.Name = "saler";
             this.Text = "saler";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.saler_FormClosing);
             this.Load += new System.EventHandler(this.saler_Load);
             this.con_saler.ResumeLayout(false);
             this.tp_buyCard.ResumeLayout(false);

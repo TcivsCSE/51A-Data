@@ -174,5 +174,10 @@ namespace _51
             {
             }
         }
+
+        private void saler_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

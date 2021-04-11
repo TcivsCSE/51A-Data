@@ -326,5 +326,10 @@ namespace _51
             {
             }
         }
+
+        private void admin_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

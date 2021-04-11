@@ -117,6 +117,7 @@ namespace _51
             this.Controls.Add(this.txbox_account);
             this.Name = "login";
             this.Text = "Form1";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.login_FormClosing);
             this.Load += new System.EventHandler(this.login_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

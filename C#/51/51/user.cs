@@ -287,6 +287,9 @@ namespace _51
             }
         }
 
-        
+        private void user_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

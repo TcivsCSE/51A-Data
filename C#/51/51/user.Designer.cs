@@ -549,6 +549,7 @@ namespace _51
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "user";
             this.Text = "user";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.user_FormClosing);
             this.Load += new System.EventHandler(this.user_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);

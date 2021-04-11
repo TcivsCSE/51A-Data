@@ -117,7 +117,10 @@ namespace _51
             }
         }
 
-        
+        private void login_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }
 

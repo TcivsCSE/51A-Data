@@ -329,6 +329,7 @@ namespace _51
             this.btn_apply.TabIndex = 6;
             this.btn_apply.Text = "apply change";
             this.btn_apply.UseVisualStyleBackColor = true;
+            this.btn_apply.Click += new System.EventHandler(this.btn_apply_Click);
             // 
             // label14
             // 
@@ -656,6 +657,7 @@ namespace _51
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "admin";
             this.Text = "admin";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.admin_FormClosing);
             this.Load += new System.EventHandler(this.admin_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
