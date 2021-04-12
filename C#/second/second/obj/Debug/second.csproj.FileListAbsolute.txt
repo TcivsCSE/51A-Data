@@ -1,0 +1,13 @@
+C:\Users\Owen\source\repos\second\second\bin\Debug\second.exe.config
+C:\Users\Owen\source\repos\second\second\bin\Debug\second.exe
+C:\Users\Owen\source\repos\second\second\bin\Debug\second.pdb
+C:\Users\Owen\source\repos\second\second\obj\Debug\second.csprojAssemblyReference.cache
+C:\Users\Owen\source\repos\second\second\obj\Debug\second.admin.resources
+C:\Users\Owen\source\repos\second\second\obj\Debug\second.Form1.resources
+C:\Users\Owen\source\repos\second\second\obj\Debug\second.Properties.Resources.resources
+C:\Users\Owen\source\repos\second\second\obj\Debug\second.saler.resources
+C:\Users\Owen\source\repos\second\second\obj\Debug\second.user.resources
+C:\Users\Owen\source\repos\second\second\obj\Debug\second.csproj.GenerateResource.cache
+C:\Users\Owen\source\repos\second\second\obj\Debug\second.csproj.CoreCompileInputs.cache
+C:\Users\Owen\source\repos\second\second\obj\Debug\second.exe
+C:\Users\Owen\source\repos\second\second\obj\Debug\second.pdb
