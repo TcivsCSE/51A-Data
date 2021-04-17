@@ -1,0 +1,13 @@
+C:\Users\Owen\source\repos\sixth\sixth\bin\Debug\sixth.exe.config
+C:\Users\Owen\source\repos\sixth\sixth\bin\Debug\sixth.exe
+C:\Users\Owen\source\repos\sixth\sixth\bin\Debug\sixth.pdb
+C:\Users\Owen\source\repos\sixth\sixth\obj\Debug\sixth.csprojAssemblyReference.cache
+C:\Users\Owen\source\repos\sixth\sixth\obj\Debug\sixth.Form1.resources
+C:\Users\Owen\source\repos\sixth\sixth\obj\Debug\sixth.Properties.Resources.resources
+C:\Users\Owen\source\repos\sixth\sixth\obj\Debug\sixth.csproj.GenerateResource.cache
+C:\Users\Owen\source\repos\sixth\sixth\obj\Debug\sixth.csproj.CoreCompileInputs.cache
+C:\Users\Owen\source\repos\sixth\sixth\obj\Debug\sixth.exe
+C:\Users\Owen\source\repos\sixth\sixth\obj\Debug\sixth.pdb
+C:\Users\Owen\source\repos\sixth\sixth\obj\Debug\sixth.admin.resources
+C:\Users\Owen\source\repos\sixth\sixth\obj\Debug\sixth.saler.resources
+C:\Users\Owen\source\repos\sixth\sixth\obj\Debug\sixth.user.resources

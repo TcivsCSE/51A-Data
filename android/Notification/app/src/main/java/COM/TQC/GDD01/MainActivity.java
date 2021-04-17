@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity
   private static final int NOTIFICATION_PRIMARY1 = 1100;
   private static final int NOTIFICATION_SECONDARY1 = 1200;
   private NotificationHelper mNotiHelper;
-  private String strPromotionUri = "http://jumpin.cc";
+  private String strPromotionUri = "http://www.buyssd.com";
 
   @Override
   protected void onCreate(Bundle savedInstanceState)
