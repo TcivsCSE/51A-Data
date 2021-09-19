@@ -1,10 +1,8 @@
-# android
-I did't save the file so I hava to rewrite the second app,fuck
-# C sharp
-I have almost finish building these
-# ssms
+# 51屆全國技能競賽 商務軟體設計 分區賽 試做題目
 
-'''
-nothing i just wanna try code block
-'''
-already rebuild saler db
+## 賽後重點
+- 勿看著公開資訊腦補情境 (資料庫除外
+- 練習方法以大量使用winform冷門功能為主
+- 手機軟體(android) 分區賽的題目會從書裡出 並會進行更改 勿直接背題目
+
+###### ps: 比賽相關內容我打算寫中文啦哈哈
